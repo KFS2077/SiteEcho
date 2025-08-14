@@ -26,7 +26,7 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
 
   if (!url) {
     return (
-      <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+      <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
         <div className="gradient-blue p-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-600/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
@@ -39,10 +39,10 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
           </div>
         </div>
         <div className="p-6 text-center">
-          <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Search className="w-8 h-8 text-blue-500" />
+          <div className="w-16 h-16 bg-blue-50 dark:bg-blue-950/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Search className="w-8 h-8 text-blue-500 dark:text-blue-400" />
           </div>
-          <p className="text-gray-600 font-medium">Search within a website after capturing a snapshot</p>
+          <p className="text-gray-600 dark:text-slate-300 font-medium">Search within a website after capturing a snapshot</p>
         </div>
       </Card>
     )
@@ -94,7 +94,7 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
   }
 
   return (
-    <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+    <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
       <div className="gradient-blue p-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-600/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
@@ -108,12 +108,12 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
       </div>
 
       <div className="p-6">
-        <div className="mb-6 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
+        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border-2 border-blue-200 dark:border-blue-800">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-sm text-blue-800 font-semibold">Searching within: {domain}</p>
-              <p className="text-xs text-blue-600 mt-1 font-medium">
+              <p className="text-sm text-blue-800 dark:text-blue-300 font-semibold">Searching within: {domain}</p>
+              <p className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-medium">
                 Using {searchEngine} to find content specifically on this website
               </p>
             </div>
@@ -122,10 +122,10 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
 
         <div className="space-y-4">
           <Select value={searchEngine} onValueChange={setSearchEngine}>
-            <SelectTrigger className="w-full h-12 rounded-xl border-gray-300 font-medium">
+            <SelectTrigger className="w-full h-12 rounded-xl border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 font-medium">
               <SelectValue placeholder="Select search engine" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="dark:bg-slate-800 dark:border-slate-700">
               <SelectItem value="google">Google</SelectItem>
               <SelectItem value="bing">Bing</SelectItem>
               <SelectItem value="duckduckgo">DuckDuckGo</SelectItem>
@@ -138,7 +138,7 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSiteSearch()}
-              className="flex-1 h-12 rounded-xl border-gray-300 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 h-12 rounded-xl border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <Button
               onClick={handleSiteSearch}
@@ -153,14 +153,14 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
         </div>
 
         {showResults && (
-          <div className="mt-6 border-2 border-gray-200 rounded-xl bg-gray-50 overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-              <h4 className="font-serif font-bold text-gray-800">Search Results</h4>
+          <div className="mt-6 border-2 border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-700/40 overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+              <h4 className="font-serif font-bold text-gray-800 dark:text-slate-100">Search Results</h4>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowResults(false)}
-                className="h-8 w-8 p-0 hover:bg-gray-100 rounded-lg"
+                className="h-8 w-8 p-0 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -171,9 +171,9 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
                 <div className="space-y-4">
                   {[...Array(3)].map((_, i) => (
                     <div key={i} className="animate-pulse">
-                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                      <div className="h-3 bg-gray-200 rounded w-full mb-1"></div>
-                      <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-3/4 mb-2"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-full mb-1"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-2/3"></div>
                     </div>
                   ))}
                 </div>
@@ -183,16 +183,16 @@ export function SiteSearchPanel({ url }: SiteSearchPanelProps) {
                     <div key={index} className="group">
                       <button
                         onClick={() => window.open(result.url, "_blank")}
-                        className="text-left w-full p-3 rounded-lg hover:bg-white transition-all duration-200 hover:shadow-md"
+                        className="text-left w-full p-3 rounded-lg hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 hover:shadow-md"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <h5 className="font-semibold text-blue-600 text-sm group-hover:underline truncate">
+                            <h5 className="font-semibold text-blue-600 dark:text-blue-400 text-sm group-hover:underline truncate">
                               {result.title}
                             </h5>
-                            <p className="text-xs text-gray-600 mt-2 line-clamp-2 font-medium">{result.snippet}</p>
+                            <p className="text-xs text-gray-600 dark:text-slate-300 mt-2 line-clamp-2 font-medium">{result.snippet}</p>
                           </div>
-                          <ExternalLink className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
+                          <ExternalLink className="w-4 h-4 text-gray-400 dark:text-slate-500 flex-shrink-0 mt-1" />
                         </div>
                       </button>
                     </div>

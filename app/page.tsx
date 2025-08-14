@@ -12,6 +12,7 @@ import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight } from "lu
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { translations, type Language } from "@/lib/translations"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface PreviewData {
   url: string
@@ -160,12 +161,12 @@ export default function HomePage() {
   const t = translations[language]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header Bar */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-lg"
+        className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-lg"
       >
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
@@ -175,8 +176,8 @@ export default function HomePage() {
                 <BarChart3 className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-black text-slate-900 font-sans">SiteEcho</h1>
-                <p className="text-sm text-slate-500 font-medium">{t.tagline}</p>
+                <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">SiteEcho</h1>
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{t.tagline}</p>
               </div>
             </motion.div>
 
@@ -189,17 +190,17 @@ export default function HomePage() {
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handlePreview()}
-                  className="pl-12 pr-4 h-14 text-base border-slate-300 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-2xl shadow-lg bg-white/70 backdrop-blur-sm text-slate-900"
+                  className="pl-12 pr-4 h-14 text-base border-slate-300 dark:border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-2xl shadow-lg bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm text-slate-900 dark:text-slate-100"
                   disabled={isLoading}
                 />
-                <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
               </motion.div>
             </div>
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3">
               {/* Language Selection Buttons */}
-              <div className="flex items-center gap-1 bg-white/70 backdrop-blur-sm rounded-xl p-1 shadow-lg border border-slate-200/50">
+              <div className="flex items-center gap-1 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm rounded-xl p-1 shadow-lg border border-slate-200/50 dark:border-slate-600/50">
                 {(["en", "es", "zh"] as Language[]).map((lang) => (
                   <motion.button
                     key={lang}
@@ -207,13 +208,15 @@ export default function HomePage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                      language === lang ? "bg-emerald-500 text-white shadow-md" : "text-slate-600 hover:bg-slate-100"
+                      language === lang ? "bg-emerald-500 text-white shadow-md" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600"
                     }`}
                   >
                     {lang === "en" ? "EN" : lang === "es" ? "ES" : "中"}
                   </motion.button>
                 ))}
               </div>
+
+              <ThemeToggle />
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
@@ -239,7 +242,7 @@ export default function HomePage() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     variant="outline"
-                    className="h-14 px-6 border-slate-300 hover:bg-slate-50 rounded-2xl font-semibold bg-white/70 backdrop-blur-sm shadow-lg text-slate-900"
+                    className="h-14 px-6 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-semibold bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
                   >
                     <Clock className="w-4 h-4 mr-2" />
                     {t.history} ({history.length})
@@ -300,7 +303,7 @@ export default function HomePage() {
                 </motion.div>
                 <div>
                   <motion.h2
-                    className="text-3xl font-black text-slate-900 font-sans"
+                    className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans"
                     initial={{ x: -20 }}
                     animate={{ x: 0 }}
                     transition={{ delay: 0.1 }}
@@ -346,9 +349,9 @@ export default function HomePage() {
                 onClick={prevSubpage}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 bg-white/70 backdrop-blur-sm rounded-full shadow-lg border border-slate-200/50 flex items-center justify-center hover:bg-white transition-all duration-200"
+                className="w-12 h-12 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm rounded-full shadow-lg border border-slate-200/50 dark:border-slate-600/50 flex items-center justify-center hover:bg-white dark:hover:bg-slate-600 transition-all duration-200"
               >
-                <ChevronLeft className="w-5 h-5 text-slate-600" />
+                <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </motion.button>
 
               <div className="flex gap-2">
@@ -369,9 +372,9 @@ export default function HomePage() {
                 onClick={nextSubpage}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 bg-white/70 backdrop-blur-sm rounded-full shadow-lg border border-slate-200/50 flex items-center justify-center hover:bg-white transition-all duration-200"
+                className="w-12 h-12 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm rounded-full shadow-lg border border-slate-200/50 dark:border-slate-600/50 flex items-center justify-center hover:bg-white dark:hover:bg-slate-600 transition-all duration-200"
               >
-                <ChevronRight className="w-5 h-5 text-slate-600" />
+                <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </motion.button>
             </div>
 

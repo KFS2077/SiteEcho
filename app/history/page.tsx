@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Clock, Trash2, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface PreviewData {
   url: string
@@ -72,8 +73,8 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 shadow-sm">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+      <header className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -86,28 +87,29 @@ export default function HistoryPage() {
               <div className="flex items-center gap-3">
                 <Clock className="w-6 h-6 text-emerald-600" />
                 <div>
-                  <h1 className="text-2xl font-black text-gray-900 font-serif">Analysis History</h1>
-                  <p className="text-sm text-gray-500 font-medium">{history.length} websites analyzed</p>
+                  <h1 className="text-2xl font-black text-gray-900 dark:text-slate-100 font-serif">Analysis History</h1>
+                  <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">{history.length} websites analyzed</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
+              <ThemeToggle />
               <div className="relative">
                 <Input
                   type="text"
                   placeholder="Search history..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 w-64"
+                  className="pl-10 w-64 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 rounded-xl"
                 />
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-slate-500" />
               </div>
               {history.length > 0 && (
                 <Button
                   variant="outline"
                   onClick={clearHistory}
-                  className="gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 bg-transparent"
+                  className="gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 bg-transparent"
                 >
                   <Trash2 className="w-4 h-4" />
                   Clear All
@@ -121,11 +123,11 @@ export default function HistoryPage() {
       <main className="max-w-7xl mx-auto p-6">
         {filteredHistory.length === 0 ? (
           <div className="text-center py-16">
-            <Clock className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+            <Clock className="w-16 h-16 text-gray-300 dark:text-slate-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-slate-200 mb-2">
               {searchTerm ? "No matching results" : "No analysis history"}
             </h3>
-            <p className="text-gray-500 mb-6">
+            <p className="text-gray-500 dark:text-slate-400 mb-6">
               {searchTerm ? "Try adjusting your search terms" : "Start analyzing websites to see your history here"}
             </p>
             <Link href="/">
@@ -135,8 +137,8 @@ export default function HistoryPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredHistory.map((item, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video bg-gray-100 relative">
+              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                <div className="aspect-video bg-gray-100 dark:bg-slate-700 relative">
                   <img
                     src={item.screenshot || "/placeholder.svg"}
                     alt={`Screenshot of ${item.title}`}
@@ -149,7 +151,7 @@ export default function HistoryPage() {
                     variant="ghost"
                     size="sm"
                     onClick={() => deleteItem(index)}
-                    className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 hover:text-red-700"
+                    className="absolute top-2 right-2 bg-white/80 dark:bg-slate-700/80 hover:bg-white dark:hover:bg-slate-600 text-red-600 hover:text-red-700"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -166,12 +168,12 @@ export default function HistoryPage() {
                       }}
                     />
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 truncate mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-500 truncate">{item.url}</p>
+                      <h3 className="font-semibold text-gray-900 dark:text-slate-100 truncate mb-1">{item.title}</h3>
+                      <p className="text-sm text-gray-500 dark:text-slate-400 truncate">{item.url}</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">{item.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-slate-300 mb-3 line-clamp-2">{item.description}</p>
 
                   <div className="flex flex-wrap gap-1 mb-3">
                     {item.keywords.slice(0, 3).map((keyword, i) => (
@@ -187,9 +189,9 @@ export default function HistoryPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">{formatDate(item.timestamp)}</span>
+                    <span className="text-xs text-gray-500 dark:text-slate-400">{formatDate(item.timestamp)}</span>
                     <Link href={`/?url=${encodeURIComponent(item.url)}`}>
-                      <Button size="sm" variant="outline">
+                      <Button size="sm" variant="outline" className="border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700">
                         Re-analyze
                       </Button>
                     </Link>

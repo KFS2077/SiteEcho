@@ -14,7 +14,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
 
   if (isLoading) {
     return (
-      <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+      <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
         <div className="gradient-emerald p-4">
           <div className="animate-pulse">
             <div className="h-6 bg-white/20 rounded w-32 mb-2"></div>
@@ -25,7 +25,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
           <div className="animate-pulse">
             <div className="flex flex-wrap gap-2">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="h-8 bg-gray-200 rounded-full w-20"></div>
+                <div key={i} className="h-8 bg-gray-200 dark:bg-slate-700 rounded-full w-20"></div>
               ))}
             </div>
           </div>
@@ -36,7 +36,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
 
   if (keywords.length === 0) {
     return (
-      <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+      <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
         <div className="gradient-emerald p-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-emerald-600/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
@@ -49,10 +49,10 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
           </div>
         </div>
         <div className="p-6 text-center">
-          <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Tag className="w-8 h-8 text-emerald-500" />
+          <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Tag className="w-8 h-8 text-emerald-500 dark:text-emerald-400" />
           </div>
-          <p className="text-gray-600 font-medium">Keywords will appear here after analyzing the website</p>
+          <p className="text-gray-600 dark:text-slate-300 font-medium">Keywords will appear here after analyzing the website</p>
         </div>
       </Card>
     )
@@ -78,7 +78,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
   }
 
   return (
-    <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+    <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
       <div className="gradient-emerald p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -103,7 +103,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
             return (
               <button
                 key={index}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-300 transform hover:scale-105 ${style.color} ${style.size} font-medium`}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-300 transform hover:scale-105 ${style.color} ${style.size} font-medium dark:shadow-none`}
                 onMouseEnter={() => setHoveredKeyword(keyword)}
                 onMouseLeave={() => setHoveredKeyword(null)}
                 onClick={() => {
@@ -122,7 +122,7 @@ export function KeywordsPanel({ keywords, isLoading }: KeywordsPanelProps) {
 
         {keywords.length > 10 && (
           <div className="mt-6 text-center">
-            <p className="text-xs text-gray-500 font-medium">Click any keyword to copy • Hover for interactions</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 font-medium">Click any keyword to copy • Hover for interactions</p>
           </div>
         )}
       </div>

@@ -72,10 +72,10 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
 
   if (!currentUrl) {
     return (
-      <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+      <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
         <div className="gradient-purple p-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-white/20 dark:bg-white/20 rounded-xl flex items-center justify-center">
               <Globe className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -85,17 +85,17 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
           </div>
         </div>
         <div className="p-6 text-center">
-          <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Globe className="w-8 h-8 text-purple-500" />
+          <div className="w-16 h-16 bg-purple-50 dark:bg-purple-950/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Globe className="w-8 h-8 text-purple-500 dark:text-purple-400" />
           </div>
-          <p className="text-gray-600 font-medium">Find similar websites after capturing a snapshot</p>
+          <p className="text-gray-600 dark:text-slate-300 font-medium">Find similar websites after capturing a snapshot</p>
         </div>
       </Card>
     )
   }
 
   return (
-    <Card className="border-gray-200 bg-white shadow-lg rounded-2xl overflow-hidden">
+    <Card className="border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg rounded-2xl overflow-hidden">
       <div className="gradient-purple p-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -120,12 +120,12 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
               {isLoading ? "Finding Similar Sites..." : "Find Similar Sites"}
             </Button>
 
-            <div className="p-4 bg-amber-50 rounded-xl border-2 border-amber-200">
+            <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-xl border-2 border-amber-200 dark:border-amber-800">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-amber-800 mb-1">API Integration Required</p>
-                  <p className="text-xs text-amber-700 font-medium">
+                  <p className="text-sm font-semibold text-amber-800 dark:text-amber-300 mb-1">API Integration Required</p>
+                  <p className="text-xs text-amber-700 dark:text-amber-400 font-medium">
                     This feature needs integration with a website similarity service (SimilarWeb, Alexa, or custom
                     analysis).
                   </p>
@@ -140,29 +140,29 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
                 placeholder="Search by keywords or URL..."
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                className="flex-1 h-12 rounded-xl border-gray-300 font-medium"
+                className="flex-1 h-12 rounded-xl border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 font-medium"
               />
-              <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl">
-                <Search className="w-5 h-5 text-gray-500" />
+              <div className="flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-slate-700 rounded-xl">
+                <Search className="w-5 h-5 text-gray-500 dark:text-slate-400" />
               </div>
             </div>
 
             {isLoading ? (
               <div className="space-y-4">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="animate-pulse border-2 border-gray-200 rounded-xl p-4">
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-3"></div>
+                  <div key={i} className="animate-pulse border-2 border-gray-200 dark:border-slate-700 rounded-xl p-4">
+                    <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-3/4 mb-3"></div>
                     <div className="flex gap-2">
-                      <div className="h-3 bg-gray-200 rounded w-16"></div>
-                      <div className="h-3 bg-gray-200 rounded w-20"></div>
-                      <div className="h-3 bg-gray-200 rounded w-14"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-16"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-20"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded w-14"></div>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
               <div className="space-y-4 max-h-96 overflow-y-auto custom-scrollbar">
-                <div className="text-xs text-gray-500 font-bold grid grid-cols-12 gap-3 px-4 py-3 border-b-2 border-gray-200 bg-gray-50 rounded-t-xl">
+                <div className="text-xs text-gray-500 font-bold grid grid-cols-12 gap-3 px-4 py-3 border-b-2 border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50 rounded-t-xl">
                   <div className="col-span-5">URL</div>
                   <div className="col-span-7">Keywords</div>
                 </div>
@@ -170,20 +170,20 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
                 {filteredSites.map((site, index) => (
                   <div
                     key={index}
-                    className="border-2 border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition-all duration-200 hover:shadow-md"
+                    className="border-2 border-gray-200 dark:border-slate-700 rounded-xl p-4 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-all duration-200 hover:shadow-md"
                   >
                     <div className="grid grid-cols-12 gap-3 items-start">
                       <div className="col-span-5">
                         <button onClick={() => window.open(site.url, "_blank")} className="text-left group w-full">
                           <div className="flex items-center gap-2">
-                            <ExternalLink className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                            <ExternalLink className="w-4 h-4 text-gray-400 dark:text-slate-500 flex-shrink-0" />
                             <div className="min-w-0">
                               {site.title && (
-                                <p className="font-semibold text-sm text-gray-800 group-hover:text-purple-600 truncate">
+                                <p className="font-semibold text-sm text-gray-800 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 truncate">
                                   {site.title}
                                 </p>
                               )}
-                              <p className="text-xs text-gray-500 group-hover:underline truncate font-medium">
+                              <p className="text-xs text-gray-500 dark:text-slate-400 group-hover:underline truncate font-medium">
                                 {site.url}
                               </p>
                             </div>
@@ -198,8 +198,8 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
                               key={keywordIndex}
                               className={`inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border-2 font-medium ${
                                 searchKeyword && keyword.toLowerCase().includes(searchKeyword.toLowerCase())
-                                  ? "bg-yellow-100 text-yellow-800 border-yellow-300"
-                                  : "bg-gray-100 text-gray-600 border-gray-200"
+                                  ? "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-300 dark:border-yellow-700"
+                                  : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-slate-300 border-gray-200 dark:border-slate-600"
                               }`}
                             >
                               <Tag className="w-2.5 h-2.5" />
@@ -214,7 +214,7 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
 
                 {filteredSites.length === 0 && searchKeyword && (
                   <div className="text-center py-8">
-                    <p className="text-sm text-gray-500 font-medium">
+                    <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
                       No similar sites found matching "{searchKeyword}"
                     </p>
                   </div>
@@ -223,8 +223,8 @@ export function SimilarSitesPanel({ currentUrl }: SimilarSitesPanelProps) {
             )}
 
             {similarSites.length > 0 && (
-              <div className="text-center pt-4 border-t-2 border-gray-200">
-                <p className="text-xs text-gray-500 font-semibold">
+              <div className="text-center pt-4 border-t-2 border-gray-200 dark:border-slate-700">
+                <p className="text-xs text-gray-500 dark:text-slate-400 font-semibold">
                   Found {filteredSites.length} of {similarSites.length} similar websites
                 </p>
               </div>

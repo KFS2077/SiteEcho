@@ -200,3 +200,68 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
     </Card>
   )
 }
+
+-  return (
+-    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
++  return (
++    <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+       <div className="p-4 border-b border-slate-100">
+-        <h3 className="font-semibold text-slate-800">Website Metadata</h3>
++        <h3 className="font-semibold text-slate-800 dark:text-slate-100">Website Metadata</h3>
+       </div>
+       <div className="p-4 space-y-4">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+           <div>
+-            <div className="bg-slate-100 rounded-xl p-3">
+-              <p className="text-xs text-slate-400">Title</p>
+-              <p className="font-medium text-slate-800">{data.title || "N/A"}</p>
++            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
++              <p className="text-xs text-slate-400 dark:text-slate-500">Title</p>
++              <p className="font-medium text-slate-800 dark:text-slate-100">{data.title || "N/A"}</p>
+             </div>
+           </div>
+           <div>
+-            <div className="bg-slate-100 rounded-xl p-3">
+-              <p className="text-xs text-slate-400">Description</p>
+-              <p className="text-sm text-slate-600">{data.description || "N/A"}</p>
++            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
++              <p className="text-xs text-slate-400 dark:text-slate-500">Description</p>
++              <p className="text-sm text-slate-600 dark:text-slate-300">{data.description || "N/A"}</p>
+             </div>
+           </div>
+           <div>
+-            <div className="bg-slate-100 rounded-xl p-3">
+-              <p className="text-xs text-slate-400">URL</p>
+-              <p className="text-sm text-slate-600 break-all">{data.url || "N/A"}</p>
++            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
++              <p className="text-xs text-slate-400 dark:text-slate-500">URL</p>
++              <p className="text-sm text-slate-600 dark:text-slate-300 break-all">{data.url || "N/A"}</p>
+             </div>
+           </div>
+           <div>
+-            <div className="bg-slate-100 rounded-xl p-3">
+-              <p className="text-xs text-slate-400">Status</p>
+-              <p className="text-sm text-slate-600">{data.status || "Unknown"}</p>
++            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
++              <p className="text-xs text-slate-400 dark:text-slate-500">Status</p>
++              <p className="text-sm text-slate-600 dark:text-slate-300">{data.status || "Unknown"}</p>
+             </div>
+           </div>
+         </div>
+
+-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
+-          <p className="text-blue-700 text-sm">This is a preview panel for metadata. API integration pending.</p>
++        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
++          <p className="text-blue-700 dark:text-blue-300 text-sm">This is a preview panel for metadata. API integration pending.</p>
+         </div>
+
+         <div className="flex items-center gap-2">
+-          <button className="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-600">Refresh</button>
+-          <button className="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-600">Copy</button>
++          <button className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">Refresh</button>
++          <button className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">Copy</button>
+         </div>
+       </div>
+     </div>
+   )
+}
