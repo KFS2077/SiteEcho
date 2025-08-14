@@ -185,7 +185,7 @@ export const translations = {
     clickOperatorTip: "点击任一运算符卡片插入到查询中",
     combineOperatorsTip: "组合多个运算符以获得更精准结果",
     engineLimitationsTip: "并非所有运算符适用于所有搜索引擎",
-    quotesForPhrasesTip: "精确短语请使用引号"
+    quotesForPhrasesTip: "精确短语请使用引号",
 
     // Keywords subpage
     noAnalysisYet: "尚未分析",
