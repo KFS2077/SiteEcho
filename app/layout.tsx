@@ -19,8 +19,8 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "WebAnalyzer - Professional Website Analysis",
-  description: "Modern web analysis tool with keyword insights, site search, and competitor discovery",
+  title: "SiteEcho",
+  description: "SiteEcho is a modern web analysis tool that provides keyword insights, site search, and competitor discovery",
   generator: "v0.dev",
 }
 

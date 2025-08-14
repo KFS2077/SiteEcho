@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     // Header
-    tagline: "echoing back your surfing",
+    tagline: "where the web's echo becomes insights",
     urlPlaceholder: "Enter website URL to analyze...",
     analyzing: "Analyzing...",
     analyze: "Analyze",
@@ -123,7 +123,7 @@ export const translations = {
   },
   zh: {
     // Header
-    tagline: "回响你的冲浪",
+    tagline: "于交织回响中萃成洞见",
     urlPlaceholder: "输入网站URL进行分析...",
     analyzing: "分析中...",
     analyze: "分析",
