@@ -10,6 +10,7 @@ import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
 import { SiteSearchSubpage } from "@/components/subpages/site-search-subpage"
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
+import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
 import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, ArrowLeftRight, Trash2, Search } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { translations, type Language } from "@/lib/translations"
@@ -43,6 +44,14 @@ const subpages = [
     component: SiteSearchSubpage,
     gradient: "from-blue-500 to-indigo-600",
     icon: "🎯",
+  },
+  {
+    id: "engine",
+    title: "Advanced Web Search",
+    description: "Build queries using search operators. Open results in a new tab",
+    component: SearchEngineSubpage,
+    gradient: "from-orange-500 to-red-600",
+    icon: "🧭",
   },
   {
     id: "similar",

@@ -23,6 +23,20 @@ export const translations = {
     siteSearchDescription: "Search for specific content within the website using search engines",
     similarSites: "Similar Websites",
     similarSitesDescription: "Find websites with similar content and keywords",
+    // Advanced search subpage
+    advancedSearchEngine: "Advanced Web Search",
+    advancedSearchDescription: "Build advanced search queries with operators",
+    selectSearchEngine: "Select Search Engine",
+    searchQuery: "Search Query",
+    enterSearchQuery: "Enter your search query with operators...",
+    availableOperators: "Available Operators",
+    searchNow: "Search Now",
+    clear: "Clear",
+    tips: "Tips",
+    clickOperatorTip: "Click on any operator card to insert it into your query",
+    combineOperatorsTip: "Combine multiple operators for more precise results",
+    engineLimitationsTip: "Not all operators work on all search engines",
+    quotesForPhrasesTip: "Use quotes for exact phrase matching",
 
     // Keywords subpage
     noAnalysisYet: "No Analysis Yet",
@@ -84,6 +98,20 @@ export const translations = {
     siteSearchDescription: "Busca contenido específico dentro del sitio web usando motores de búsqueda",
     similarSites: "Sitios Web Similares",
     similarSitesDescription: "Encuentra sitios web con contenido y palabras clave similares",
+    // Advanced search subpage
+    advancedSearchEngine: "Búsqueda Web Avanzada",
+    advancedSearchDescription: "Crea consultas de búsqueda avanzadas con operadores",
+    selectSearchEngine: "Selecciona el Motor de Búsqueda",
+    searchQuery: "Consulta de Búsqueda",
+    enterSearchQuery: "Introduce tu consulta con operadores...",
+    availableOperators: "Operadores Disponibles",
+    searchNow: "Buscar Ahora",
+    clear: "Limpiar",
+    tips: "Consejos",
+    clickOperatorTip: "Haz clic en un operador para insertarlo en la consulta",
+    combineOperatorsTip: "Combina operadores para resultados más precisos",
+    engineLimitationsTip: "No todos los operadores funcionan en todos los motores",
+    quotesForPhrasesTip: "Usa comillas para coincidencias exactas",
 
     // Keywords subpage
     noAnalysisYet: "Sin Análisis Aún",
@@ -144,7 +172,20 @@ export const translations = {
     siteSearch: "站内搜索",
     siteSearchDescription: "使用搜索引擎在网站内搜索特定内容",
     similarSites: "相似网站",
-    similarSitesDescription: "查找具有相似内容和关键词的网站",
+    // Advanced search subpage
+    advancedSearchEngine: "高级网络搜索",
+    advancedSearchDescription: "使用运算符构建高级搜索查询",
+    selectSearchEngine: "选择搜索引擎",
+    searchQuery: "搜索查询",
+    enterSearchQuery: "输入包含运算符的搜索内容...",
+    availableOperators: "可用运算符",
+    searchNow: "立即搜索",
+    clear: "清空",
+    tips: "提示",
+    clickOperatorTip: "点击任一运算符卡片插入到查询中",
+    combineOperatorsTip: "组合多个运算符以获得更精准结果",
+    engineLimitationsTip: "并非所有运算符适用于所有搜索引擎",
+    quotesForPhrasesTip: "精确短语请使用引号"
 
     // Keywords subpage
     noAnalysisYet: "尚未分析",

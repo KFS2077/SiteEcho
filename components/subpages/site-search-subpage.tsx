@@ -19,13 +19,17 @@ interface PreviewData {
 
 interface SiteSearchSubpageProps {
   previewData: PreviewData | null
+  language: import("@/lib/translations").Language
 }
 
-export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
+import { translations } from "@/lib/translations"
+
+export function SiteSearchSubpage({ previewData, language }: SiteSearchSubpageProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [searchEngine, setSearchEngine] = useState("google")
   const [isSearching, setIsSearching] = useState(false)
   const [searchResults, setSearchResults] = useState<any[]>([])
+  const t = translations[language]
 
   const handleSiteSearch = async () => {
     if (!searchQuery.trim() || !previewData) return
@@ -64,8 +68,8 @@ export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
         className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-12 text-center border border-slate-200/50 dark:border-slate-700/50"
       >
         <Search className="w-16 h-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-slate-600 dark:text-slate-300 mb-2">No Website Selected</h3>
-        <p className="text-slate-500 dark:text-slate-400">Analyze a website to enable site search</p>
+        <h3 className="text-xl font-semibold text-slate-600 dark:text-slate-300 mb-2">{t.noWebsiteSelected}</h3>
+        <p className="text-slate-500 dark:text-slate-400">{t.analyzeWebsiteSearch}</p>
       </motion.div>
     )
   }
@@ -81,8 +85,8 @@ export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
           <Search className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">Search Within Site</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Searching within: {new URL(previewData.url).hostname}</p>
+          <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">{t.searchWithinSite}</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400">{t.searchingWithin} {new URL(previewData.url).hostname}</p>
         </div>
       </div>
 
@@ -105,7 +109,7 @@ export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
           <div className="flex-1">
             <Input
               type="text"
-              placeholder="Search within this website..."
+              placeholder={t.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSiteSearch()}
@@ -117,7 +121,7 @@ export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
             disabled={isSearching || !searchQuery.trim()}
             className="h-12 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-xl font-semibold"
           >
-            {isSearching ? "Searching..." : "Go"}
+            {isSearching ? t.searching : t.go}
           </Button>
         </div>
       </div>
@@ -132,7 +136,7 @@ export function SiteSearchSubpage({ previewData }: SiteSearchSubpageProps) {
           >
             <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
                <Globe className="w-4 h-4" />
-               Search Results Preview
+               {t.searchResultsPreview}
              </h4>
              <div className="space-y-3">
                {searchResults.map((result, index) => (
