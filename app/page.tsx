@@ -313,15 +313,15 @@ export default function HomePage() {
 
               {currentPage === 'analyzer' && (
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    variant="outline"
-+                    onClick={handlePageSwap}
-                     className="h-14 px-6 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-semibold bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
-                   >
-                     <Clock className="w-4 h-4 mr-2" />
-                     {t.history} ({history.length})
-                   </Button>
-                 </motion.div>
+                <Button
+                  variant="outline"
+                  onClick={handlePageSwap}
+                  className="h-14 px-6 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-semibold bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                >
+                  <Clock className="w-4 h-4 mr-2" />
+                  {t.history} ({history.length})
+                </Button>
+              </motion.div>
               )}
 
               <DropdownMenu>
@@ -574,7 +574,7 @@ export default function HomePage() {
                           ))}
                           {item.keywords.length > 3 && (
                             <Badge variant="outline" className="text-xs">
-                              +{item.keywords.length - 3}
+                              {"+"}{item.keywords.length - 3}
                             </Badge>
                           )}
                         </div>

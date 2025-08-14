@@ -183,7 +183,7 @@ export default function HistoryPage() {
                     ))}
                     {item.keywords.length > 3 && (
                       <Badge variant="outline" className="text-xs">
-                        +{item.keywords.length - 3}
+                        {"+"}{item.keywords.length - 3}
                       </Badge>
                     )}
                   </div>

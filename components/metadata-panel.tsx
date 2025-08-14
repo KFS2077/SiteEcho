@@ -98,14 +98,14 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
         </div>
 
         <div>
-          <h3 className="font-serif font-semibold text-slate-800 mb-4">Keywords</h3>
+          <h3 className="font-serif font-semibold text-slate-800 dark:text-slate-100 mb-4">Keywords</h3>
 
           {preview.keywords.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {preview.keywords.map((keyword, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md border border-blue-200"
+                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 dark:bg-blue-950/20 text-blue-700 dark:text-blue-300 text-xs rounded-md border border-blue-200 dark:border-blue-800"
                 >
                   <Tag className="w-3 h-3" />
                   {keyword}
@@ -113,12 +113,12 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-slate-500">No keywords extracted</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">No keywords extracted</p>
           )}
         </div>
 
         <div>
-          <h3 className="font-serif font-semibold text-slate-800 mb-4">Search Within Site</h3>
+          <h3 className="font-serif font-semibold text-slate-800 dark:text-slate-100 mb-4">Search Within Site</h3>
 
           <div className="space-y-3">
             <Select value={searchEngine} onValueChange={setSearchEngine}>
@@ -148,21 +148,21 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
         </div>
 
         <div>
-          <h3 className="font-serif font-semibold text-slate-800 mb-4">Similar Websites</h3>
+          <h3 className="font-serif font-semibold text-slate-800 dark:text-slate-100 mb-4">Similar Websites</h3>
 
           <Button
             variant="outline"
-            className="w-full justify-center gap-2 border-slate-300 hover:bg-slate-50 bg-transparent"
+            className="w-full justify-center gap-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 bg-transparent"
             onClick={handleFindSimilar}
           >
             <Globe className="w-4 h-4" />
             Find Similar Sites
           </Button>
 
-          <div className="mt-2 p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <div className="mt-2 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
             <div className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-amber-700">
+              <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-amber-700 dark:text-amber-300">
                 <strong>API Required:</strong> This feature needs integration with a website similarity service
                 (SimilarWeb, Alexa, or custom analysis).
               </p>
@@ -172,24 +172,24 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
 
         {/* Timestamp */}
         <div>
-          <h3 className="font-serif font-semibold text-slate-800 mb-4">Snapshot Details</h3>
+          <h3 className="font-serif font-semibold text-slate-800 dark:text-slate-100 mb-4">Snapshot Details</h3>
 
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Clock className="w-5 h-5 text-slate-400" />
+              <Clock className="w-5 h-5 text-slate-400 dark:text-slate-500" />
               <div>
-                <p className="text-sm font-medium text-slate-800">{preview.timestamp.toLocaleTimeString()}</p>
-                <p className="text-xs text-slate-500">{preview.timestamp.toLocaleDateString()}</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-100">{preview.timestamp.toLocaleTimeString()}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{preview.timestamp.toLocaleDateString()}</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
           <Button
             variant="outline"
-            className="w-full justify-center gap-2 border-slate-300 hover:bg-slate-50 bg-transparent"
+            className="w-full justify-center gap-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 bg-transparent"
             onClick={() => window.open(preview.url, "_blank")}
           >
             <ExternalLink className="w-4 h-4" />
@@ -199,69 +199,4 @@ export function MetadataPanel({ preview }: MetadataPanelProps) {
       </div>
     </Card>
   )
-}
-
--  return (
--    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-+  return (
-+    <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-       <div className="p-4 border-b border-slate-100">
--        <h3 className="font-semibold text-slate-800">Website Metadata</h3>
-+        <h3 className="font-semibold text-slate-800 dark:text-slate-100">Website Metadata</h3>
-       </div>
-       <div className="p-4 space-y-4">
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           <div>
--            <div className="bg-slate-100 rounded-xl p-3">
--              <p className="text-xs text-slate-400">Title</p>
--              <p className="font-medium text-slate-800">{data.title || "N/A"}</p>
-+            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
-+              <p className="text-xs text-slate-400 dark:text-slate-500">Title</p>
-+              <p className="font-medium text-slate-800 dark:text-slate-100">{data.title || "N/A"}</p>
-             </div>
-           </div>
-           <div>
--            <div className="bg-slate-100 rounded-xl p-3">
--              <p className="text-xs text-slate-400">Description</p>
--              <p className="text-sm text-slate-600">{data.description || "N/A"}</p>
-+            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
-+              <p className="text-xs text-slate-400 dark:text-slate-500">Description</p>
-+              <p className="text-sm text-slate-600 dark:text-slate-300">{data.description || "N/A"}</p>
-             </div>
-           </div>
-           <div>
--            <div className="bg-slate-100 rounded-xl p-3">
--              <p className="text-xs text-slate-400">URL</p>
--              <p className="text-sm text-slate-600 break-all">{data.url || "N/A"}</p>
-+            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
-+              <p className="text-xs text-slate-400 dark:text-slate-500">URL</p>
-+              <p className="text-sm text-slate-600 dark:text-slate-300 break-all">{data.url || "N/A"}</p>
-             </div>
-           </div>
-           <div>
--            <div className="bg-slate-100 rounded-xl p-3">
--              <p className="text-xs text-slate-400">Status</p>
--              <p className="text-sm text-slate-600">{data.status || "Unknown"}</p>
-+            <div className="bg-slate-100 dark:bg-slate-700 rounded-xl p-3">
-+              <p className="text-xs text-slate-400 dark:text-slate-500">Status</p>
-+              <p className="text-sm text-slate-600 dark:text-slate-300">{data.status || "Unknown"}</p>
-             </div>
-           </div>
-         </div>
-
--        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
--          <p className="text-blue-700 text-sm">This is a preview panel for metadata. API integration pending.</p>
-+        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
-+          <p className="text-blue-700 dark:text-blue-300 text-sm">This is a preview panel for metadata. API integration pending.</p>
-         </div>
-
-         <div className="flex items-center gap-2">
--          <button className="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-600">Refresh</button>
--          <button className="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-600">Copy</button>
-+          <button className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">Refresh</button>
-+          <button className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">Copy</button>
-         </div>
-       </div>
-     </div>
-   )
 }
