@@ -8,9 +8,8 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
-import { SiteSearchSubpage } from "@/components/subpages/site-search-subpage"
-import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
 import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
+import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
 import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, ArrowLeftRight, Trash2, Search } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { translations, type Language } from "@/lib/translations"
@@ -41,17 +40,9 @@ const subpages = [
     id: "search",
     title: "Within-site Search",
     description: "Search for specific content within the website using search engines",
-    component: SiteSearchSubpage,
+    component: SearchEngineSubpage,
     gradient: "from-blue-500 to-indigo-600",
     icon: "🎯",
-  },
-  {
-    id: "engine",
-    title: "Advanced Web Search",
-    description: "Build queries using search operators. Open results in a new tab",
-    component: SearchEngineSubpage,
-    gradient: "from-orange-500 to-red-600",
-    icon: "🧭",
   },
   {
     id: "similar",
@@ -242,7 +233,7 @@ export default function HomePage() {
                 <BarChart3 className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">SiteEcho</h1>
+                <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">urlInsights</h1>
                 <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
                   {currentPage === 'analyzer' ? t.tagline : `Analysis History - ${history.length} websites analyzed`}
                 </p>
@@ -513,7 +504,7 @@ export default function HomePage() {
                     exit={{ x: -300, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
-                    <CurrentComponent previewData={currentPreview} language={language} />
+                    <CurrentComponent previewData={currentPreview} />
                   </motion.div>
                 </AnimatePresence>
               </motion.div>
