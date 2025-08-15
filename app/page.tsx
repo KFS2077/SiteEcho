@@ -15,6 +15,7 @@ import { useSearchParams } from "next/navigation"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { CubeButton } from "@/components/cube-button"
 // import { ThemeToggle } from "@/components/theme-toggle"
 
 interface PreviewData {
@@ -604,9 +605,7 @@ export default function HomePage() {
         </motion.main>
       </AnimatePresence>
 
--       {/* Cube button will be added here later to replace the swap button */}
-+       <CubeButton onClick={handlePageSwap} />
-      </div>
-    )
-  }
+      <CubeButton onClick={handlePageSwap} />
+    </div>
+  )
 }
