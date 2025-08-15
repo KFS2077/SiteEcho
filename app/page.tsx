@@ -10,7 +10,7 @@ import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
 import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
-import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, ArrowLeftRight, Trash2, Search } from "lucide-react"
+import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
@@ -604,23 +604,9 @@ export default function HomePage() {
         </motion.main>
       </AnimatePresence>
 
-      {/* Swap Button - Fixed Bottom Right */}
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        animate={{ rotate: isSwapping ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <Button
-          onClick={handlePageSwap}
-          className="w-16 h-12 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white/20"
-          size="icon"
-          disabled={isSwapping}
-        >
-          <ArrowLeftRight className="w-6 h-6" />
-        </Button>
-      </motion.div>
-    </div>
-  )
+-       {/* Cube button will be added here later to replace the swap button */}
++       <CubeButton onClick={handlePageSwap} />
+      </div>
+    )
+  }
 }
