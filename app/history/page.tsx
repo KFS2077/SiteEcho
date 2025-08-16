@@ -88,14 +88,12 @@ export default function HistoryPage() {
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              {history.length > 0 && (
-                <Link href="/">
-                  <Button variant="ghost" size="sm" className="gap-2">
-                    <ArrowLeft className="w-4 h-4" />
-                    {t.back}
-                  </Button>
-                </Link>
-              )}
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  {t.back}
+                </Button>
+              </Link>
               <div className="flex items-center gap-3">
                 <Clock className="w-6 h-6 text-emerald-600" />
                 <div>
@@ -137,13 +135,13 @@ export default function HistoryPage() {
           <div className="text-center py-16">
             <Clock className="w-16 h-16 text-gray-300 dark:text-slate-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-700 dark:text-slate-300 mb-2">
-              {searchTerm ? "No matching results" : t.noHistoryYet}
+              {searchTerm ? t.noMatchingResults ?? "No matching results" : t.noHistoryYet}
             </h3>
             <p className="text-gray-500 dark:text-slate-400 mb-6">
-              {searchTerm ? "Try adjusting your search terms" : t.startAnalyzing}
+              {searchTerm ? t.tryAdjustSearch ?? "Try adjusting your search terms" : t.startAnalyzing}
             </p>
             <Link href="/">
-              <Button className="bg-emerald-600 hover:bg-emerald-700">Start Analyzing</Button>
+              <Button className="bg-emerald-600 hover:bg-emerald-700">{t.analyze}</Button>
             </Link>
           </div>
         ) : (

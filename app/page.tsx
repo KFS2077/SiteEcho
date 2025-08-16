@@ -262,7 +262,7 @@ export default function HomePage() {
                     <Button
                       onClick={() => handlePreview()}
                       disabled={isLoading || !url.trim()}
-                      className="h-12 px-8 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                      className="h-10 px-5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
                     >
                       {isLoading ? (
                         <>
@@ -317,7 +317,7 @@ export default function HomePage() {
                 <Button
                   variant="outline"
                   onClick={handlePageSwap}
-                  className="h-12 px-6 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                  className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
                 >
                   <Clock className="w-4 h-4 mr-2" />
                   {t.history} ({history.length})
@@ -329,7 +329,7 @@ export default function HomePage() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-12 px-4 rounded-2xl bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm border-0 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700"
+                    className="h-12 px-3 rounded-2xl bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm border-0 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700"
                     aria-label="Settings"
                   >
                     <Settings className="w-4 h-4" />

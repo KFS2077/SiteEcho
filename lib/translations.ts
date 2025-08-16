@@ -68,6 +68,8 @@ export const translations = {
     clearAll: "Clear All",
     noHistoryYet: "No analysis history",
     startAnalyzing: "Start analyzing websites to see your history here",
+    noMatchingResults: "No matching results",
+    tryAdjustSearch: "Try adjusting your search terms",
   },
   es: {
     // Header
@@ -138,6 +140,8 @@ export const translations = {
     clearAll: "Limpiar Todo",
     noHistoryYet: "Sin historial de análisis",
     startAnalyzing: "Comienza a analizar sitios web para ver tu historial aquí",
+    noMatchingResults: "Sin resultados coincidentes",
+    tryAdjustSearch: "Intenta ajustar tus términos de búsqueda",
   },
   zh: {
     // Header
@@ -207,6 +211,8 @@ export const translations = {
     clearAll: "清除全部",
     noHistoryYet: "暂无分析历史",
     startAnalyzing: "开始分析网站以查看您的历史记录",
+    noMatchingResults: "无匹配结果",
+    tryAdjustSearch: "尝试调整您的搜索词",
   },
 }
 
