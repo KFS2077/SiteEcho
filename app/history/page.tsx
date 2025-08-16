@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { translations, type Language } from "@/lib/translations"
+import { FancyPageTransition } from "@/components/page-transition"
 
 interface PreviewData {
   url: string
@@ -83,15 +84,16 @@ export default function HistoryPage() {
   const t = translations[language]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+    <FancyPageTransition>
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
       <header className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="gap-2">
+                <Button variant="ghost" size="sm" className="gap-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">
                   <ArrowLeft className="w-4 h-4" />
-                  {t.back}
+                  {t?.back || "Back"}
                 </Button>
               </Link>
               <div className="flex items-center gap-3">
@@ -214,6 +216,7 @@ export default function HistoryPage() {
       </main>
 
 
-    </div>
+      </div>
+    </FancyPageTransition>
   )
 }

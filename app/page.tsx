@@ -12,9 +12,11 @@ import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
 import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search } from "lucide-react"
 import { useSearchParams } from "next/navigation"
+import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { FancyPageTransition } from "@/components/page-transition"
 
 // import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -219,7 +221,8 @@ export default function HomePage() {
   const t = translations[language]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <FancyPageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header Bar */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
@@ -313,16 +316,30 @@ export default function HomePage() {
               )}
 
               {currentPage === 'analyzer' && (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant="outline"
-                  onClick={handlePageSwap}
-                  className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
-                >
-                  <Clock className="w-4 h-4 mr-2" />
-                  {t.history} ({history.length})
-                </Button>
-              </motion.div>
+                <>
+                  <Link href="/search">
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        variant="outline"
+                        className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                      >
+                        <Search className="w-4 h-4 mr-2" />
+                        Advanced Search
+                      </Button>
+                    </motion.div>
+                  </Link>
+                  
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      variant="outline"
+                      onClick={handlePageSwap}
+                      className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                    >
+                      <Clock className="w-4 h-4 mr-2" />
+                      {t.history} ({history.length})
+                    </Button>
+                  </motion.div>
+                </>
               )}
 
               <DropdownMenu>
@@ -604,8 +621,7 @@ export default function HomePage() {
           )}
         </motion.main>
       </AnimatePresence>
-
-
-    </div>
+      </div>
+    </FancyPageTransition>
   )
 }

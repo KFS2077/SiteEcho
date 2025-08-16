@@ -70,6 +70,19 @@ export const translations = {
     startAnalyzing: "Start analyzing websites to see your history here",
     noMatchingResults: "No matching results",
     tryAdjustSearch: "Try adjusting your search terms",
+
+    // Search page
+    searchPageTitle: "Advanced Search",
+    searchPageTagline: "powerful search across the web",
+    searchPlaceholderAdvanced: "Enter your search query...",
+    searchEngine: "Search Engine",
+    searchSyntax: "Search Syntax",
+    aiRewrite: "AI Rewrite",
+    singleSyntax: "Single Syntax",
+    combinedSyntax: "Combined Syntax",
+    enableAiRewrite: "Enable AI auto-rewrite to structured syntax",
+    searchNow: "Search Now",
+    backToAnalyzer: "Back to Analyzer",
   },
   es: {
     // Header
@@ -142,6 +155,19 @@ export const translations = {
     startAnalyzing: "Comienza a analizar sitios web para ver tu historial aquí",
     noMatchingResults: "Sin resultados coincidentes",
     tryAdjustSearch: "Intenta ajustar tus términos de búsqueda",
+
+    // Search page
+    searchPageTitle: "Búsqueda Avanzada",
+    searchPageTagline: "búsqueda poderosa en la web",
+    searchPlaceholderAdvanced: "Ingresa tu consulta de búsqueda...",
+    searchEngine: "Motor de Búsqueda",
+    searchSyntax: "Sintaxis de Búsqueda",
+    aiRewrite: "Reescritura IA",
+    singleSyntax: "Sintaxis Simple",
+    combinedSyntax: "Sintaxis Combinada",
+    enableAiRewrite: "Habilitar reescritura automática de IA a sintaxis estructurada",
+    searchNow: "Buscar Ahora",
+    backToAnalyzer: "Volver al Analizador",
   },
   zh: {
     // Header
@@ -213,6 +239,19 @@ export const translations = {
     startAnalyzing: "开始分析网站以查看您的历史记录",
     noMatchingResults: "无匹配结果",
     tryAdjustSearch: "尝试调整您的搜索词",
+
+    // Search page
+    searchPageTitle: "高级搜索",
+    searchPageTagline: "强大的网络搜索功能",
+    searchPlaceholderAdvanced: "输入您的搜索查询...",
+    searchEngine: "搜索引擎",
+    searchSyntax: "搜索语法",
+    aiRewrite: "AI重写",
+    singleSyntax: "单一语法",
+    combinedSyntax: "组合语法",
+    enableAiRewrite: "启用AI自动重写为结构化语法",
+    searchNow: "立即搜索",
+    backToAnalyzer: "返回分析器",
   },
 }
 
