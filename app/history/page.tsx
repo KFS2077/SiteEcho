@@ -26,8 +26,6 @@ export default function HistoryPage() {
   const [filteredHistory, setFilteredHistory] = useState<PreviewData[]>([])
   const [language, setLanguage] = useState<Language>('en')
 
-  const t = translations[language]
-
   useEffect(() => {
     // Load language from localStorage
     const savedLanguage = localStorage.getItem("siteecho-language") as Language
@@ -81,6 +79,8 @@ export default function HistoryPage() {
       minute: "2-digit",
     }).format(date)
   }
+
+  const t = translations[language]
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900">

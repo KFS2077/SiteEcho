@@ -328,8 +328,8 @@ export default function HomePage() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="outline"
-                    className="h-12 px-3 rounded-2xl bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm border-0 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700"
+                    variant="ghost"
+                    className="h-12 px-3 bg-transparent border-0 text-slate-900 dark:text-slate-100 hover:bg-transparent dark:hover:bg-transparent"
                     aria-label="Settings"
                   >
                     <Settings className="w-4 h-4" />
