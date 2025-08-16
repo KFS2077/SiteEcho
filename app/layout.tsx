@@ -19,8 +19,8 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "urlInsights",
-  description: "urlInsights is a modern web analysis tool that provides keyword insights, site search, and competitor discovery",
+  title: "URLinsights",
+  description: "URLinsights is a modern web analysis tool that provides keyword insights, site search, and competitor discovery",
   generator: "v0.dev",
 }
 

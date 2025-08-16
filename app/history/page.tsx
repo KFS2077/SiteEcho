@@ -8,6 +8,7 @@ import { ArrowLeft, Clock, Trash2, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { translations, type Language } from "@/lib/translations"
 
 interface PreviewData {
   url: string
@@ -23,8 +24,17 @@ export default function HistoryPage() {
   const [history, setHistory] = useState<PreviewData[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredHistory, setFilteredHistory] = useState<PreviewData[]>([])
+  const [language, setLanguage] = useState<Language>('en')
+
+  const t = translations[language]
 
   useEffect(() => {
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem("siteecho-language") as Language
+    if (savedLanguage && translations[savedLanguage]) {
+      setLanguage(savedLanguage)
+    }
+
     // Load history from localStorage
     const savedHistory = localStorage.getItem("webanalyzer-history")
     if (savedHistory) {
@@ -78,17 +88,19 @@ export default function HistoryPage() {
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/">
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Analyzer
-                </Button>
-              </Link>
+              {history.length > 0 && (
+                <Link href="/">
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    {t.back}
+                  </Button>
+                </Link>
+              )}
               <div className="flex items-center gap-3">
                 <Clock className="w-6 h-6 text-emerald-600" />
                 <div>
-                  <h1 className="text-2xl font-black text-gray-900 dark:text-slate-100 font-serif">Analysis History</h1>
-                  <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">{history.length} websites analyzed</p>
+                  <h1 className="text-2xl font-black text-gray-900 dark:text-slate-100 font-serif">{t.analysisHistory}</h1>
+                  <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">{history.length} {t.websitesAnalyzed}</p>
                 </div>
               </div>
             </div>
@@ -98,7 +110,7 @@ export default function HistoryPage() {
               <div className="relative">
                 <Input
                   type="text"
-                  placeholder="Search history..."
+                  placeholder={t.searchHistory}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 w-64 bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 rounded-xl"
@@ -112,7 +124,7 @@ export default function HistoryPage() {
                   className="gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 bg-transparent"
                 >
                   <Trash2 className="w-4 h-4" />
-                  Clear All
+                  {t.clearAll}
                 </Button>
               )}
             </div>
@@ -124,11 +136,11 @@ export default function HistoryPage() {
         {filteredHistory.length === 0 ? (
           <div className="text-center py-16">
             <Clock className="w-16 h-16 text-gray-300 dark:text-slate-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-slate-200 mb-2">
-              {searchTerm ? "No matching results" : "No analysis history"}
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-slate-300 mb-2">
+              {searchTerm ? "No matching results" : t.noHistoryYet}
             </h3>
             <p className="text-gray-500 dark:text-slate-400 mb-6">
-              {searchTerm ? "Try adjusting your search terms" : "Start analyzing websites to see your history here"}
+              {searchTerm ? "Try adjusting your search terms" : t.startAnalyzing}
             </p>
             <Link href="/">
               <Button className="bg-emerald-600 hover:bg-emerald-700">Start Analyzing</Button>

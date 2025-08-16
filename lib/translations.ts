@@ -59,6 +59,15 @@ export const translations = {
     english: "English",
     spanish: "Español",
     chinese: "中文",
+
+    // History page
+    back: "Back",
+    analysisHistory: "Analysis History",
+    websitesAnalyzed: "websites analyzed",
+    searchHistory: "Search history...",
+    clearAll: "Clear All",
+    noHistoryYet: "No analysis history",
+    startAnalyzing: "Start analyzing websites to see your history here",
   },
   es: {
     // Header
@@ -120,6 +129,15 @@ export const translations = {
     english: "English",
     spanish: "Español",
     chinese: "中文",
+
+    // History page
+    back: "Volver",
+    analysisHistory: "Historial de Análisis",
+    websitesAnalyzed: "sitios web analizados",
+    searchHistory: "Buscar historial...",
+    clearAll: "Limpiar Todo",
+    noHistoryYet: "Sin historial de análisis",
+    startAnalyzing: "Comienza a analizar sitios web para ver tu historial aquí",
   },
   zh: {
     // Header
@@ -180,6 +198,15 @@ export const translations = {
     english: "English",
     spanish: "Español",
     chinese: "中文",
+
+    // History page
+    back: "返回",
+    analysisHistory: "分析历史",
+    websitesAnalyzed: "个网站已分析",
+    searchHistory: "搜索历史记录...",
+    clearAll: "清除全部",
+    noHistoryYet: "暂无分析历史",
+    startAnalyzing: "开始分析网站以查看您的历史记录",
   },
 }
 

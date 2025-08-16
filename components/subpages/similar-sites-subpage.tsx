@@ -28,32 +28,7 @@ const mockSimilarSites = [
   { url: "example5.com", keywords: ["health", "wellness", "fitness"] },
 ]
 
-// AI suggestions data
-const suggestions = [
-  {
-    domain: "techcrunch.com",
-    reason: "Similar tech content",
-    description: "Technology news and startup coverage"
-  },
-  {
-    domain: "wired.com", 
-    reason: "Innovation focus",
-    description: "Technology, science, and culture coverage"
-  },
-  {
-    domain: "theverge.com",
-    reason: "Tech journalism", 
-    description: "Technology news and product reviews"
-  }
-]
 
-// Categories data
-const categories = [
-  { name: "Technology", count: 245 },
-  { name: "Business", count: 189 },
-  { name: "Design", count: 127 },
-  { name: "Education", count: 96 }
-]
 
 export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
   const [searchTerm, setSearchTerm] = useState("")
@@ -117,89 +92,10 @@ export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
         </div>
       </div>
 
-      {/* Two Column Layout - Improved alignment */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        {/* Left: AI Suggestions */}
-        <div className="h-fit">
-          <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-blue-500" />
-                <h4 className="font-semibold text-slate-800 dark:text-slate-100">AI Suggestions</h4>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">API Call</span>
-                <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">Beta</span>
-              </div>
-            </div>
-            <div className="space-y-3">
-              {suggestions.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-4 rounded-xl border border-slate-200/50 dark:border-slate-700/50 hover:border-blue-300 dark:hover:border-blue-500/50 transition-colors hover:shadow-sm group"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                      <Link2 className="w-4 h-4 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h5 className="font-medium text-blue-600 group-hover:text-blue-700 dark:text-blue-400 dark:group-hover:text-blue-300 cursor-pointer text-sm">{item.domain}</h5>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">{item.reason}</p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{item.description}</p>
-                    </div>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => window.open(`https://${item.domain}`, "_blank")}
-                      className="p-1"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Right: Explore by Category */}
-        <div className="h-fit">
-          <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <Layers className="w-5 h-5 text-purple-500" />
-                <h4 className="font-semibold text-slate-800 dark:text-slate-100">Explore by Category</h4>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">API Call</span>
-                <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">New</span>
-              </div>
-            </div>
-            <div className="space-y-3">
-              {categories.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 rounded-xl border border-slate-200/50 dark:border-slate-700/50 hover:border-purple-300 dark:hover:border-purple-500/50 transition-colors hover:shadow-sm group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700" />
-                    <div>
-                      <h5 className="font-medium text-slate-800 dark:text-slate-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 text-sm">{item.name}</h5>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{item.count} sites</p>
-                    </div>
-                  </div>
-                  <Button size="sm" variant="ghost" onClick={() => alert(`Explore ${item.name}`)} className="text-xs px-2 py-1">
-                    Explore
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Results Table */}
-      <div className="bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
+      <div className="bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden mb-6">
         <div className="grid grid-cols-2 gap-px bg-slate-200 dark:bg-slate-700">
           <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 font-semibold">Website URL</div>
           <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 font-semibold">Keywords</div>
@@ -243,6 +139,50 @@ export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
               </motion.div>
             ))
           )}
+        </div>
+      </div>
+
+      {/* AI Suggestions - moved below results */}
+      <div className="mb-6">
+        <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-blue-500" />
+              <h4 className="font-semibold text-slate-800 dark:text-slate-100">AI Suggestions</h4>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">API Call</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">Beta</span>
+              <Button size="sm" variant="outline" disabled className="text-xs px-3 py-1">
+                Closed
+              </Button>
+            </div>
+          </div>
+          <div className="text-center py-8">
+            <p className="text-slate-500 dark:text-slate-400 text-sm">AI suggestions are currently unavailable</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Explore by Category - moved to bottom */}
+      <div>
+        <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Layers className="w-5 h-5 text-purple-500" />
+              <h4 className="font-semibold text-slate-800 dark:text-slate-100">Explore by Category</h4>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">API Call</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">New</span>
+              <Button size="sm" variant="outline" disabled className="text-xs px-3 py-1">
+                Closed
+              </Button>
+            </div>
+          </div>
+          <div className="text-center py-8">
+            <p className="text-slate-500 dark:text-slate-400 text-sm">Category exploration is currently unavailable</p>
+          </div>
         </div>
       </div>
     </motion.div>
