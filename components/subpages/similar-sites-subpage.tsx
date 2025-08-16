@@ -151,10 +151,8 @@ export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
               <h4 className="font-semibold text-slate-800 dark:text-slate-100">AI Suggestions</h4>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">API Call</span>
-              <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">Beta</span>
               <Button size="sm" variant="outline" disabled className="text-xs px-3 py-1">
-                Closed
+                null
               </Button>
             </div>
           </div>
@@ -170,13 +168,11 @@ export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-purple-500" />
-              <h4 className="font-semibold text-slate-800 dark:text-slate-100">Explore by Category</h4>
+              <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-sm">Explore by Category</h4>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">API Call</span>
-              <span className="text-xs px-2 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">New</span>
               <Button size="sm" variant="outline" disabled className="text-xs px-3 py-1">
-                Closed
+                null
               </Button>
             </div>
           </div>
