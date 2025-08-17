@@ -236,8 +236,7 @@ export async function POST(request: NextRequest) {
       const metadata = await extractMetadata(url)
 
       return NextResponse.json({
--        screenshot: randomMock.screenshot,
-+        screenshot: BLANK_SVG_DATA,
+        screenshot: BLANK_SVG_DATA,
          title: metadata.title || randomMock.title,
          description: metadata.description || randomMock.description,
          favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
@@ -246,8 +245,7 @@ export async function POST(request: NextRequest) {
        })
      } catch (error) {
        return NextResponse.json({
--        screenshot: randomMock.screenshot,
-+        screenshot: BLANK_SVG_DATA,
+        screenshot: BLANK_SVG_DATA,
          title: randomMock.title,
          description: randomMock.description,
          favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
