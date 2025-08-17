@@ -192,6 +192,7 @@ export const translations = {
     siteSearch: "站内搜索",
     siteSearchDescription: "使用搜索引擎在网站内搜索特定内容",
     similarSites: "相似网站",
+    similarSitesDescription: "查找具有相似内容和关键词的网站",
 
     // Keywords subpage
     noAnalysisYet: "尚未分析",

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Globe, Search, ExternalLink, Network, Link2, Zap, Layers } from "lucide-react"
+import { Search, ExternalLink, Network, Layers } from "lucide-react"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -141,27 +141,6 @@ export function SimilarSitesSubpage({ previewData }: SimilarSitesSubpageProps) {
           )}
         </div>
       </div>
-
-      {/* AI Suggestions - moved below results */}
-      <div className="mb-6">
-        <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-blue-500" />
-              <h4 className="font-semibold text-slate-800 dark:text-slate-100">AI Suggestions</h4>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button size="sm" variant="outline" disabled className="text-xs px-3 py-1">
-                Coming soon
-              </Button>
-            </div>
-          </div>
-          <div className="text-center py-8">
-            <p className="text-slate-500 dark:text-slate-400 text-sm">AI suggestions are currently unavailable</p>
-          </div>
-        </div>
-      </div>
-
       {/* Explore by Category - moved to bottom */}
       <div>
         <div className="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">

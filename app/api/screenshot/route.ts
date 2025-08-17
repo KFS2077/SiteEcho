@@ -1,23 +1,30 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-const mockData = [
-  {
-    screenshot: "/modern-website-homepage.png",
-    keywords: [
-      "technology",
-      "innovation",
-      "digital",
-      "solutions",
-      "modern",
-      "web",
-      "design",
-      "development",
-      "business",
-      "services",
-    ],
-    title: "TechCorp - Digital Solutions",
-    description: "Leading provider of innovative digital solutions for modern businesses",
-  },
+// Blank white SVG data URL used as a temporary screenshot placeholder
+const BLANK_SVG_DATA =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><rect width="100%" height="100%" fill="white"/></svg>'
+  )
+
+ const mockData = [
+   {
+     screenshot: "/modern-website-homepage.png",
+     keywords: [
+       "technology",
+       "innovation",
+       "digital",
+       "solutions",
+       "modern",
+       "web",
+       "design",
+       "development",
+       "business",
+       "services",
+     ],
+     title: "TechCorp - Digital Solutions",
+     description: "Leading provider of innovative digital solutions for modern businesses",
+   },
   {
     screenshot: "/project-2.png",
     keywords: [
@@ -229,25 +236,27 @@ export async function POST(request: NextRequest) {
       const metadata = await extractMetadata(url)
 
       return NextResponse.json({
-        screenshot: randomMock.screenshot,
-        title: metadata.title || randomMock.title,
-        description: metadata.description || randomMock.description,
-        favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
-        keywords: metadata.keywords.length > 0 ? metadata.keywords : randomMock.keywords,
-        timestamp: new Date().toISOString(),
-      })
-    } catch (error) {
-      return NextResponse.json({
-        screenshot: randomMock.screenshot,
-        title: randomMock.title,
-        description: randomMock.description,
-        favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
-        keywords: randomMock.keywords,
-        timestamp: new Date().toISOString(),
-      })
-    }
-  } catch (error) {
-    console.error("Screenshot API error:", error)
-    return NextResponse.json({ error: "Failed to capture screenshot" }, { status: 500 })
-  }
-}
+-        screenshot: randomMock.screenshot,
++        screenshot: BLANK_SVG_DATA,
+         title: metadata.title || randomMock.title,
+         description: metadata.description || randomMock.description,
+         favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
+         keywords: metadata.keywords.length > 0 ? metadata.keywords : randomMock.keywords,
+         timestamp: new Date().toISOString(),
+       })
+     } catch (error) {
+       return NextResponse.json({
+-        screenshot: randomMock.screenshot,
++        screenshot: BLANK_SVG_DATA,
+         title: randomMock.title,
+         description: randomMock.description,
+         favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`,
+         keywords: randomMock.keywords,
+         timestamp: new Date().toISOString(),
+       })
+     }
+   } catch (error) {
+     console.error("Screenshot API error:", error)
+     return NextResponse.json({ error: "Failed to capture screenshot" }, { status: 500 })
+   }
+ }
