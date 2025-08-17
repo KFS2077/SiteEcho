@@ -10,7 +10,7 @@ import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
 import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
-import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search } from "lucide-react"
+import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search, Filter } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
@@ -255,30 +255,25 @@ export default function HomePage() {
                       value={url}
                       onChange={(e) => setUrl(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handlePreview()}
-                      className="pl-12 pr-4 h-14 text-base border-slate-300 dark:border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-2xl shadow-lg bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm text-slate-900 dark:text-slate-100"
+                      className="pl-12 pr-16 h-14 text-base border-slate-300 dark:border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-2xl shadow-lg bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm text-slate-900 dark:text-slate-100"
                       disabled={isLoading}
                     />
                     <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                  </motion.div>
-
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button
+                    
+                    {/* Integrated Get Button */}
+                    <motion.button
                       onClick={() => handlePreview()}
                       disabled={isLoading || !url.trim()}
-                      className="h-10 px-5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 disabled:from-slate-300 disabled:to-slate-400 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center disabled:cursor-not-allowed"
                     >
                       {isLoading ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                          {t.analyzing}
-                        </>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       ) : (
-                        <>
-                          <Sparkles className="w-5 h-5 mr-2" />
-                          Get
-                        </>
+                        <Sparkles className="w-4 h-4" />
                       )}
-                    </Button>
+                    </motion.button>
                   </motion.div>
                 </div>
               </div>
@@ -301,7 +296,7 @@ export default function HomePage() {
             )}
 
             {/* Right Actions: History + Clear + Settings */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               {currentPage === 'history' && history.length > 0 && (
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
@@ -317,27 +312,67 @@ export default function HomePage() {
 
               {currentPage === 'analyzer' && (
                 <>
+                  {/* Advanced Search Icon with Hover Expansion */}
                   <Link href="/search">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button
-                        variant="outline"
-                        className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                    <motion.div 
+                      className="relative group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <motion.div
+                        className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
+                        whileHover="hover"
+                        initial="initial"
+                        variants={{
+                          initial: { width: "2.5rem" },
+                          hover: { width: "auto" }
+                        }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                       >
-                        <Search className="w-4 h-4 mr-2" />
-                        Advanced Search
-                      </Button>
+                        <Filter className="w-5 h-5 flex-shrink-0" />
+                        <motion.span
+                          className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                          variants={{
+                            initial: { opacity: 0, width: 0 },
+                            hover: { opacity: 1, width: "auto" }
+                          }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          Advanced Search
+                        </motion.span>
+                      </motion.div>
                     </motion.div>
                   </Link>
                   
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button
-                      variant="outline"
+                  {/* History Icon with Hover Expansion */}
+                  <motion.div 
+                    className="relative group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.div
                       onClick={handlePageSwap}
-                      className="h-10 px-4 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl font-medium bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-slate-900 dark:text-slate-100"
+                      className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
+                      whileHover="hover"
+                      initial="initial"
+                      variants={{
+                        initial: { width: "2.5rem" },
+                        hover: { width: "auto" }
+                      }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
-                      <Clock className="w-4 h-4 mr-2" />
-                      {t.history} ({history.length})
-                    </Button>
+                      <Clock className="w-5 h-5 flex-shrink-0" />
+                      <motion.span
+                        className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                        variants={{
+                          initial: { opacity: 0, width: 0 },
+                          hover: { opacity: 1, width: "auto" }
+                        }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                      >
+                        {t.history} ({history.length})
+                      </motion.span>
+                    </motion.div>
                   </motion.div>
                 </>
               )}
@@ -346,10 +381,10 @@ export default function HomePage() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="h-12 px-3 bg-transparent border-0 text-slate-900 dark:text-slate-100 hover:bg-transparent dark:hover:bg-transparent"
+                    className="h-10 w-10 p-0 bg-transparent border-0 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 rounded-xl transition-all duration-200"
                     aria-label="Settings"
                   >
-                    <Settings className="w-4 h-4" />
+                    <Settings className="w-5 h-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
