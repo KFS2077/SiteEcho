@@ -142,7 +142,7 @@ export default function HomePage() {
   useEffect(() => {
     const savedLanguage = localStorage.getItem("siteecho-language") as Language
 
-    if (savedLanguage && ["en", "es", "zh"].includes(savedLanguage)) {
+    if (savedLanguage && ["en", "es"].includes(savedLanguage)) {
       setLanguage(savedLanguage)
     }
   }, [])
@@ -395,7 +395,7 @@ export default function HomePage() {
                   <DropdownMenuRadioGroup value={language} onValueChange={(val) => handleLanguageChange(val as Language)}>
                     <DropdownMenuRadioItem value="en">{t.english}</DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="es">{t.spanish}</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="zh">{t.chinese}</DropdownMenuRadioItem>
+                    
                   </DropdownMenuRadioGroup>
 
                   <DropdownMenuSeparator />

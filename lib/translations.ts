@@ -58,7 +58,7 @@ export const translations = {
     language: "Language",
     english: "English",
     spanish: "Español",
-    chinese: "中文",
+
 
     // History page
     back: "Back",
@@ -139,11 +139,10 @@ export const translations = {
     lightMode: "Modo Claro",
     darkMode: "Modo Oscuro",
 
-    // Language
+    // Language settings
     language: "Idioma",
     english: "English",
     spanish: "Español",
-    chinese: "中文",
 
     // History page
     back: "Volver",
@@ -169,91 +168,7 @@ export const translations = {
     searchNow: "Buscar Ahora",
     backToAnalyzer: "Volver al Analizador",
   },
-  zh: {
-    // Header
-    tagline: "将网页转化为洞见",
-    urlPlaceholder: "输入网站URL进行分析...",
-    analyzing: "分析中...",
-    analyze: "分析",
-    history: "历史记录",
 
-    // Preview pane translations - Added Chinese translations for preview pane
-    noPreviewLoaded: "未加载预览",
-    pasteUrlPrompt: "在上方粘贴URL以开始捕获安全的网站快照",
-    secureSandboxPreview: "安全沙盒预览",
-    capturingSnapshot: "正在捕获快照...",
-    thisMayTakeMoments: "这可能需要几分钟时间",
-    failedToLoadScreenshot: "加载截图失败",
-    websiteMayBeBlocking: "网站可能正在阻止截图",
-
-    // Subpages
-    keywordInsights: "关键词洞察",
-    keywordDescription: "从分析的网站中发现关键词和主题",
-    siteSearch: "站内搜索",
-    siteSearchDescription: "使用搜索引擎在网站内搜索特定内容",
-    similarSites: "相似网站",
-    similarSitesDescription: "查找具有相似内容和关键词的网站",
-
-    // Keywords subpage
-    noAnalysisYet: "尚未分析",
-    analyzeWebsitePrompt: "分析网站以查看关键词洞察",
-    extractedKeywords: "提取的关键词",
-    from: "来自",
-    noKeywords: "未从此网站提取到关键词",
-
-    // Site search subpage
-    noWebsiteSelected: "未选择网站",
-    analyzeWebsiteSearch: "分析网站以启用站内搜索",
-    searchWithinSite: "站内搜索",
-    searchingWithin: "搜索范围：",
-    searchPlaceholder: "在此网站内搜索...",
-    searching: "搜索中...",
-    go: "搜索",
-    searchResultsPreview: "搜索结果预览",
-
-    // Similar sites subpage
-    noAnalysisAvailable: "无可用分析",
-    analyzeWebsiteSimilar: "分析网站以查找相似站点",
-    apiIntegrationNeeded: "需要API集成",
-    searchByKeywords: "按URL或关键词搜索...",
-    websiteUrl: "网站URL",
-    keywords: "关键词",
-    noSimilarWebsites: "未找到与您搜索匹配的相似网站",
-
-    // Theme
-    lightMode: "浅色模式",
-    darkMode: "深色模式",
-
-    // Language
-    language: "语言",
-    english: "English",
-    spanish: "Español",
-    chinese: "中文",
-
-    // History page
-    back: "返回",
-    analysisHistory: "分析历史",
-    websitesAnalyzed: "个网站已分析",
-    searchHistory: "搜索历史记录...",
-    clearAll: "清除全部",
-    noHistoryYet: "暂无分析历史",
-    startAnalyzing: "开始分析网站以查看您的历史记录",
-    noMatchingResults: "无匹配结果",
-    tryAdjustSearch: "尝试调整您的搜索词",
-
-    // Search page
-    searchPageTitle: "高级搜索",
-    searchPageTagline: "强大的网络搜索功能",
-    searchPlaceholderAdvanced: "输入您的搜索查询...",
-    searchEngine: "搜索引擎",
-    searchSyntax: "搜索语法",
-    aiRewrite: "AI重写",
-    singleSyntax: "单一语法",
-    combinedSyntax: "组合语法",
-    enableAiRewrite: "启用AI自动重写为结构化语法",
-    searchNow: "立即搜索",
-    backToAnalyzer: "返回分析器",
-  },
 }
 
 export type Language = keyof typeof translations
