@@ -228,6 +228,7 @@ export default function SearchPage() {
   const [isSearching, setIsSearching] = useState(false)
   const [language, setLanguage] = useState<Language>("en")
   const [activeSyntax, setActiveSyntax] = useState<SyntaxItem | null>(null)
+  const [showSyntaxPanel, setShowSyntaxPanel] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
@@ -289,6 +290,12 @@ export default function SearchPage() {
   }
 
   const t = translations[language]
+
+  // Filter syntax categories based on selected engine
+  const filteredSyntaxCategories = syntaxCategories.map(category => ({
+    ...category,
+    items: category.items.filter(item => item.engines.includes(selectedEngine))
+  })).filter(category => category.items.length > 0)
 
   return (
     <FancyPageTransition>
@@ -374,78 +381,133 @@ export default function SearchPage() {
           )}
         </AnimatePresence>
 
-        {/* Main Content */}
-        <motion.main
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-4xl mx-auto p-6"
-        >
-          <div className="space-y-8">
-            {/* Search Input Section */}
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="p-0 border-0 bg-transparent shadow-none"
-            >
-              <div className="flex items-center justify-center">
-                <div className="relative w-full max-w-3xl">
-                  {/* The input itself (standalone) */}
-                  <Input
-                    type="text"
-                    placeholder={t.searchPlaceholderAdvanced}
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="h-16 text-lg pl-5 pr-44 border-slate-300 dark:border-slate-600 focus:border-purple-500 focus:ring-purple-500/20 rounded-2xl shadow-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur text-slate-900 dark:text-slate-100"
-                    disabled={isSearching}
-                  />
+        {/* Main Content - Centered Search */}
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6">
+          {/* Centered Search Input Section */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="w-full max-w-4xl"
+          >
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-3xl">
+                {/* Search Syntax Icon with Animated Ring */}
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                  <motion.button
+                    onClick={() => setShowSyntaxPanel(!showSyntaxPanel)}
+                    className="relative w-8 h-8 flex items-center justify-center"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Animated Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"
+                      animate={{
+                        rotate: 360,
+                        scale: showSyntaxPanel ? [1, 1.2, 1] : [1, 1.1, 1]
+                      }}
+                      transition={{
+                        rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+                        scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                      }}
+                    />
+                    <div className="relative w-6 h-6 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center">
+                      <Code className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                    </div>
+                  </motion.button>
+                </div>
 
-                  {/* Right inline engine select */}
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <Select value={selectedEngine} onValueChange={(val) => setSelectedEngine(val as EngineId)}>
-                      <SelectTrigger className={`w-40 h-10 rounded-xl bg-white/90 dark:bg-slate-700/90 border-slate-300 dark:border-slate-600 ${engineFontClass[selectedEngine]}`} aria-label="Select search engine">
-                        <SelectValue placeholder="Engine" />
-                      </SelectTrigger>
-                      <SelectContent align="end" className="min-w-[10rem]">
-                        <SelectItem value="google" className="font-sans font-semibold">Google</SelectItem>
-                        <SelectItem value="bing" className="font-serif">Bing</SelectItem>
-                        <SelectItem value="duckduckgo" className="font-mono">DuckDuckGo</SelectItem>
-                        <SelectItem value="yandex" className="italic tracking-wide">Yandex</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* The input itself */}
+                <Input
+                  type="text"
+                  placeholder={t.searchPlaceholderAdvanced}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                  className="h-16 text-lg pl-16 pr-44 border-slate-300 dark:border-slate-600 focus:border-purple-500 focus:ring-purple-500/20 rounded-2xl shadow-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur text-slate-900 dark:text-slate-100"
+                  disabled={isSearching}
+                />
+
+                {/* Right inline engine select */}
+                <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                  <Select value={selectedEngine} onValueChange={(val) => setSelectedEngine(val as EngineId)}>
+                    <SelectTrigger className={`w-40 h-10 rounded-xl bg-white/90 dark:bg-slate-700/90 border-slate-300 dark:border-slate-600 ${engineFontClass[selectedEngine]}`} aria-label="Select search engine">
+                      <SelectValue placeholder="Engine" />
+                    </SelectTrigger>
+                    <SelectContent align="end" className="min-w-[10rem]">
+                      <SelectItem value="google" className="font-sans font-semibold">Google</SelectItem>
+                      <SelectItem value="bing" className="font-serif">Bing</SelectItem>
+                      <SelectItem value="duckduckgo" className="font-mono">DuckDuckGo</SelectItem>
+                      <SelectItem value="yandex" className="italic tracking-wide">Yandex</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
+        </div>
 
-            {/* Syntax selector and AI options */}
-              <div className="space-y-6">
-                {/* Syntax Categories */}
-                <Card className="p-6 bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl border-slate-200/50 dark:border-slate-700/50 shadow-xl">
+        {/* Responsive Search Syntax Panel */}
+        <AnimatePresence>
+          {showSyntaxPanel && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                onClick={() => setShowSyntaxPanel(false)}
+              />
+              
+              {/* Panel */}
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl max-h-[80vh] overflow-y-auto z-50 mx-4"
+              >
+                <Card className="p-6 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl border-slate-200/50 dark:border-slate-700/50 shadow-2xl">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                        <Code className="w-5 h-5 text-white" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                          <Code className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{t.searchSyntax}</h3>
+                          <p className="text-sm text-slate-500 dark:text-slate-400">For {searchEngines.find(e => e.id === selectedEngine)?.name}</p>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{t.searchSyntax}</h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowSyntaxPanel(false)}
+                        className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                      >
+                        ✕
+                      </Button>
                     </div>
 
-                    {/* Category rows */}
+                    {/* Category rows - filtered by engine */}
                     <div className="space-y-3">
-                      {syntaxCategories.map((cat) => (
+                      {filteredSyntaxCategories.map((cat) => (
                         <div key={cat.id} className="space-y-2">
                           <div className="text-sm font-semibold text-slate-600 dark:text-slate-300">{cat.name}</div>
                           <div className="overflow-x-auto">
-                            <div className="flex gap-2 whitespace-nowrap">
+                            <div className="flex gap-2 flex-wrap">
                               {cat.items.map((item) => (
                                 <button
                                    key={item.id}
                                    onMouseEnter={() => setActiveSyntax(item)}
                                    onFocus={() => setActiveSyntax(item)}
                                   onMouseLeave={() => {}}
-                                   onClick={() => triggerInsert(item)}
+                                   onClick={() => {
+                                     triggerInsert(item)
+                                     setShowSyntaxPanel(false)
+                                   }}
                                    className={`px-3 py-2 rounded-xl border text-sm transition-all bg-white/60 dark:bg-slate-700/60 hover:bg-purple-50 dark:hover:bg-purple-900/20 border-slate-200 dark:border-slate-600 hover:border-purple-400`}
                                    title={item.description}
                                  >
@@ -472,7 +534,7 @@ export default function SearchPage() {
                             <div className="mt-2 text-xs font-mono text-slate-500 dark:text-slate-400">Example inserted: {activeSyntax.insert}</div>
                           </div>
                         ) : (
-                          <div className="text-slate-500 dark:text-slate-400">Hover or select a syntax to see details and auto-insert an example using the keyword "example".</div>
+                          <div className="text-slate-500 dark:text-slate-400">Hover or select a syntax to see details and auto-insert.</div>
                         )}
                       </motion.div>
                     </div>
@@ -494,9 +556,10 @@ export default function SearchPage() {
                     </div>
                   </div>
                 </Card>
-             </div>
-           </div>
-        </motion.main>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </FancyPageTransition>
   )
