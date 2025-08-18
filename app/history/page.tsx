@@ -4,12 +4,14 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Clock, Trash2, Search, BarChart3 } from "lucide-react"
+import { ArrowLeft, Clock, Trash2, Search, BarChart3, Settings, Monitor, Sun, Moon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { FancyPageTransition } from "@/components/page-transition"
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 interface PreviewData {
   url: string
@@ -26,6 +28,7 @@ export default function HistoryPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredHistory, setFilteredHistory] = useState<PreviewData[]>([])
   const [language, setLanguage] = useState<Language>('en')
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     // Load language from localStorage
@@ -49,10 +52,10 @@ export default function HistoryPage() {
   useEffect(() => {
     if (searchTerm.trim()) {
       const filtered = history.filter(
-        (item) =>
+        (item: PreviewData) =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.url.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.keywords.some((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase())),
+          item.keywords.some((keyword: string) => keyword.toLowerCase().includes(searchTerm.toLowerCase())),
       )
       setFilteredHistory(filtered)
     } else {
@@ -67,7 +70,7 @@ export default function HistoryPage() {
   }
 
   const deleteItem = (index: number) => {
-    const newHistory = history.filter((_, i) => i !== index)
+    const newHistory = history.filter((_: PreviewData, i: number) => i !== index)
     setHistory(newHistory)
     localStorage.setItem("webanalyzer-history", JSON.stringify(newHistory))
   }
@@ -79,6 +82,11 @@ export default function HistoryPage() {
       hour: "2-digit",
       minute: "2-digit",
     }).format(date)
+  }
+
+  const handleLanguageChange = (newLanguage: Language) => {
+    setLanguage(newLanguage)
+    localStorage.setItem("siteecho-language", newLanguage)
   }
 
   const t = translations[language]
@@ -123,7 +131,7 @@ export default function HistoryPage() {
                 </div>
               </div>
 
-              {/* Clear History Button */}
+              {/* Clear History Button and Settings */}
               <div className="flex items-center gap-4">
                 {history.length > 0 && (
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -137,6 +145,38 @@ export default function HistoryPage() {
                     </Button>
                   </motion.div>
                 )}
+                
+                {/* Settings Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="h-14 w-14 p-0 bg-transparent border-0 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 rounded-2xl transition-all duration-200"
+                      aria-label="Settings"
+                    >
+                      <Settings className="w-5 h-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel className="text-xs uppercase tracking-wider text-slate-500">Settings</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuLabel>{t.language}</DropdownMenuLabel>
+                    <DropdownMenuRadioGroup value={language} onValueChange={(val) => handleLanguageChange(val as Language)}>
+                      <DropdownMenuRadioItem value="en">{t.english}</DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="es">{t.spanish}</DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuLabel>Theme</DropdownMenuLabel>
+                    <DropdownMenuRadioGroup value={theme ?? "system"} onValueChange={(val) => setTheme(val)}>
+                      <DropdownMenuRadioItem value="light"><Sun className="w-4 h-4 mr-2" />{t.lightMode}</DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="dark"><Moon className="w-4 h-4 mr-2" />{t.darkMode}</DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="system"><Monitor className="w-4 h-4 mr-2" />System</DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>

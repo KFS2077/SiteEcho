@@ -158,10 +158,10 @@ export default function HomePage() {
   useEffect(() => {
     if (searchTerm.trim()) {
       const filtered = history.filter(
-        (item) =>
+        (item: PreviewData) =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.url.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.keywords.some((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase())),
+          item.keywords.some((keyword: string) => keyword.toLowerCase().includes(searchTerm.toLowerCase())),
       )
       setFilteredHistory(filtered)
     } else {
@@ -201,7 +201,7 @@ export default function HomePage() {
   }
 
   const deleteItem = (index: number) => {
-    const newHistory = history.filter((_, i) => i !== index)
+    const newHistory = history.filter((_: PreviewData, i: number) => i !== index)
     setHistory(newHistory)
     setFilteredHistory(newHistory)
     localStorage.setItem("webanalyzer-history", JSON.stringify(newHistory))
@@ -345,35 +345,36 @@ export default function HomePage() {
                   </Link>
                   
                   {/* History Icon with Hover Expansion */}
-                  <motion.div 
-                    className="relative group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.div
-                      onClick={handlePageSwap}
-                      className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
-                      whileHover="hover"
-                      initial="initial"
-                      variants={{
-                        initial: { width: "2.5rem" },
-                        hover: { width: "auto" }
-                      }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
+                  <Link href="/history">
+                    <motion.div 
+                      className="relative group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Clock className="w-5 h-5 flex-shrink-0" />
-                      <motion.span
-                        className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                      <motion.div
+                        className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
+                        whileHover="hover"
+                        initial="initial"
                         variants={{
-                          initial: { opacity: 0, width: 0 },
-                          hover: { opacity: 1, width: "auto" }
+                          initial: { width: "2.5rem" },
+                          hover: { width: "auto" }
                         }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                       >
-                        {t.history} ({history.length})
-                      </motion.span>
+                        <Clock className="w-5 h-5 flex-shrink-0" />
+                        <motion.span
+                          className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                          variants={{
+                            initial: { opacity: 0, width: 0 },
+                            hover: { opacity: 1, width: "auto" }
+                          }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          {t.history} ({history.length})
+                        </motion.span>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
+                  </Link>
                 </>
               )}
 
