@@ -20,7 +20,7 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "SiteEcho - Advanced Web Analysis & SEO Insights",
+  title: "SiteEcho",
   description: "SiteEcho is a powerful web analysis platform offering comprehensive keyword insights, site search capabilities, competitor discovery, and SEO optimization tools for modern websites.",
   keywords: ["web analysis", "SEO tools", "keyword research", "competitor analysis", "site search", "website insights", "digital marketing"],
   authors: [{ name: "SiteEcho Team" }],
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   publisher: "SiteEcho",
   robots: "index, follow",
   openGraph: {
-    title: "SiteEcho - Advanced Web Analysis & SEO Insights",
+    title: "SiteEcho",
     description: "Powerful web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteEcho - Advanced Web Analysis & SEO Insights",
+    title: "SiteEcho",
     description: "Powerful web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
   },
   viewport: "width=device-width, initial-scale=1",
@@ -55,7 +55,7 @@ export default function RootLayout({
     "@type": "WebApplication",
     "name": "SiteEcho",
     "description": "Advanced web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
-    "url": "https://siteecho.com",
+    "url": "https://site-echo-ide.vercel.app/",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web Browser",
     "offers": {
