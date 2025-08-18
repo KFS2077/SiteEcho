@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code } from "lucide-react"
+import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code, Brain } from "lucide-react"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { FancyPageTransition } from "@/components/page-transition"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
 
 // Streamlined engines: removed Baidu
 const searchEngines = [
