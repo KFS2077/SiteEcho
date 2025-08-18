@@ -4,9 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
-import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code, Brain } from "lucide-react"
+import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code } from "lucide-react"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
@@ -327,7 +325,7 @@ export default function SearchPage() {
                   </div>
                   <div>
                     <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">{t.searchPageTitle}</h1>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{t.searchPageTagline}</p>
+                    <p className="text-sm text-slate-500 dark:text-white font-medium">{t.searchPageTagline}</p>
                   </div>
                 </motion.div>
               </div>

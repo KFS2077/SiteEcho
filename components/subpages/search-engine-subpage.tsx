@@ -88,29 +88,27 @@ export function SearchEngineSubpage({ previewData }: SearchEngineSubpageProps) {
 
       <div className="space-y-4 mb-6">
         <div className="flex gap-3">
-          <Select value={searchEngine} onValueChange={setSearchEngine}>
-            <SelectTrigger className="w-16 h-12 bg-white/50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-600 rounded-xl flex items-center justify-center">
-              <div className="text-lg">
-                {searchEngine === "google" && "🔍"}
-                {searchEngine === "bing" && "🔎"}
-                {searchEngine === "duckduckgo" && "🦆"}
-              </div>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="google">🔍 Google</SelectItem>
-              <SelectItem value="bing">🔎 Bing</SelectItem>
-              <SelectItem value="duckduckgo">🦆 DuckDuckGo</SelectItem>
-            </SelectContent>
-          </Select>
-          <div className="flex-1">
+          <div className="flex-1 relative">
             <Input
               type="text"
               placeholder="Search within this website..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSiteSearch()}
-              className="h-12 w-full bg-white/50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 px-4 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400"
+              className="h-12 w-full bg-white/50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 pl-4 pr-32 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400"
             />
+            <div className="absolute right-2 top-1/2 -translate-y-1/2">
+              <Select value={searchEngine} onValueChange={setSearchEngine}>
+                <SelectTrigger className="w-24 h-8 bg-transparent border-0 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 rounded-lg">
+                  <span className="capitalize">{searchEngine}</span>
+                </SelectTrigger>
+                <SelectContent align="end">
+                  <SelectItem value="google">Google</SelectItem>
+                  <SelectItem value="bing">Bing</SelectItem>
+                  <SelectItem value="duckduckgo">DuckDuckGo</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <Button
             onClick={handleSiteSearch}

@@ -215,6 +215,15 @@ export default function HistoryPage() {
         )}
       </main>
 
+      {/* Back Arrow Button - Bottom Right */}
+      <Link href="/">
+        <Button
+          className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-lg border border-slate-200/50 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 z-50"
+          size="icon"
+        >
+          <ArrowLeft className="w-5 h-5 text-slate-700 dark:text-slate-300" />
+        </Button>
+      </Link>
 
       </div>
     </FancyPageTransition>

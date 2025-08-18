@@ -18,8 +18,6 @@ import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { FancyPageTransition } from "@/components/page-transition"
 
-// import { ThemeToggle } from "@/components/theme-toggle"
-
 interface PreviewData {
   url: string
   title: string

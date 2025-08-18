@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://siteecho.com/sitemap.xml
+
+# Disallow crawling of API routes
+Disallow: /api/
+
+# Allow crawling of main pages
+Allow: /search
+Allow: /history
+
+# Crawl delay (optional)
+Crawl-delay: 1
