@@ -63,9 +63,6 @@ export default function HomePage() {
   const [hasAutoAnalyzed, setHasAutoAnalyzed] = useState(false)
   const [currentSubpage, setCurrentSubpage] = useState(0)
   const [language, setLanguage] = useState<Language>("en")
-  
-
-
 
   const { theme, setTheme } = useTheme()
   const searchParams = useSearchParams()
@@ -169,10 +166,6 @@ export default function HomePage() {
     setLanguage(newLanguage)
     localStorage.setItem("siteecho-language", newLanguage)
   }
-
-
-
-
 
   const t = translations[language]
 
