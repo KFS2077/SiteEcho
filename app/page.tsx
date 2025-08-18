@@ -230,17 +230,19 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             {/* Logo and Title */}
-            <motion.div className="flex items-center gap-4" whileHover={{ scale: 1.02 }}>
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl">
-                <BarChart3 className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">URLinsights</h1>
-                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
-                  {currentPage === 'analyzer' ? t.tagline : `Analysis History - ${history.length} websites analyzed`}
-                </p>
-              </div>
-            </motion.div>
+            <Link href="/" className="block">
+              <motion.div className="flex items-center gap-4 cursor-pointer" whileHover={{ scale: 1.02 }}>
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl">
+                  <BarChart3 className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">URLinsights</h1>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                    {currentPage === 'analyzer' ? t.tagline : `Analysis History - ${history.length} websites analyzed`}
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
 
             {/* Search + Analyze (only show on analyzer page) */}
             {currentPage === 'analyzer' && (

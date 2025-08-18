@@ -17,13 +17,13 @@ export function Footer() {
           </div>
           
           <div className="text-center text-sm text-slate-300">
-            <p className="flex items-center gap-1 justify-center">
-              © {currentYear} SiteEcho. Made with <Heart className="w-4 h-4 text-red-400 fill-current" /> for better web analysis.
+            <p className="flex items-center gap-3 justify-center">
+              © {currentYear} SiteEcho. Made with <Heart className="w-4 h-4 text-red-400 fill-current" /> for better insights.
             </p>
           </div>
           
           <div className="text-xs text-slate-400">
-            <p>Powered by modern web technologies</p>
+            <p>Powered by Vercel</p>
           </div>
         </div>
       </div>
