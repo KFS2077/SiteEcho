@@ -10,8 +10,8 @@ import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
 import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
-import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search, Filter } from "lucide-react"
-import { useSearchParams } from "next/navigation"
+import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Filter } from "lucide-react"
+import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
@@ -64,14 +64,12 @@ export default function HomePage() {
   const [currentSubpage, setCurrentSubpage] = useState(0)
   const [language, setLanguage] = useState<Language>("en")
   
-  // Page swapping states
-  const [currentPage, setCurrentPage] = useState<'analyzer' | 'history'>('analyzer')
-  const [isSwapping, setIsSwapping] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [filteredHistory, setFilteredHistory] = useState<PreviewData[]>([])
+
+
 
   const { theme, setTheme } = useTheme()
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const handlePreview = useCallback(
     async (urlToAnalyze?: string) => {
@@ -130,7 +128,7 @@ export default function HomePage() {
           timestamp: new Date(item.timestamp),
         }))
         setHistory(parsed)
-        setFilteredHistory(parsed)
+    
       } catch (error) {
         console.error("Error loading history:", error)
       }
@@ -147,27 +145,14 @@ export default function HomePage() {
 
   useEffect(() => {
     const urlParam = searchParams.get("url")
-    if (urlParam && !hasAutoAnalyzed && currentPage === 'analyzer') {
+    if (urlParam && !hasAutoAnalyzed) {
       setUrl(urlParam)
       setHasAutoAnalyzed(true)
       handlePreview(urlParam)
     }
-  }, [searchParams, hasAutoAnalyzed, handlePreview, currentPage])
+  }, [searchParams, hasAutoAnalyzed, handlePreview])
 
-  // History filtering
-  useEffect(() => {
-    if (searchTerm.trim()) {
-      const filtered = history.filter(
-        (item) =>
-          item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.url.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.keywords.some((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase())),
-      )
-      setFilteredHistory(filtered)
-    } else {
-      setFilteredHistory(history)
-    }
-  }, [searchTerm, history])
+
 
   const nextSubpage = () => {
     setCurrentSubpage((prev) => (prev + 1) % subpages.length)
@@ -185,36 +170,9 @@ export default function HomePage() {
     localStorage.setItem("siteecho-language", newLanguage)
   }
 
-  // Page swap functionality
-  const handlePageSwap = () => {
-    setIsSwapping(true)
-    setTimeout(() => {
-      setCurrentPage(currentPage === 'analyzer' ? 'history' : 'analyzer')
-      setIsSwapping(false)
-    }, 150)
-  }
 
-  const clearHistory = () => {
-    setHistory([])
-    setFilteredHistory([])
-    localStorage.removeItem("webanalyzer-history")
-  }
 
-  const deleteItem = (index: number) => {
-    const newHistory = history.filter((_, i) => i !== index)
-    setHistory(newHistory)
-    setFilteredHistory(newHistory)
-    localStorage.setItem("webanalyzer-history", JSON.stringify(newHistory))
-  }
 
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(date)
-  }
 
   const t = translations[language]
 
@@ -238,16 +196,15 @@ export default function HomePage() {
                 <div>
                   <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 font-sans">URLinsights</h1>
                   <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
-                    {currentPage === 'analyzer' ? t.tagline : `Analysis History - ${history.length} websites analyzed`}
+                    {t.tagline}
                   </p>
                 </div>
               </motion.div>
             </Link>
 
-            {/* Search + Analyze (only show on analyzer page) */}
-            {currentPage === 'analyzer' && (
-              <div className="flex-1 max-w-3xl mx-8">
-                <div className="flex items-center gap-3">
+            {/* Search + Analyze */}
+            <div className="flex-1 max-w-3xl mx-8">
+              <div className="flex items-center gap-3">
                   <motion.div className="relative flex-1" whileFocus={{ scale: 1.02 }}>
                     <Input
                       type="url"
@@ -277,41 +234,12 @@ export default function HomePage() {
                   </motion.div>
                 </div>
               </div>
-            )}
-
-            {/* History Search (only show on history page) */}
-            {currentPage === 'history' && (
-              <div className="flex-1 max-w-2xl mx-8">
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Search history..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-12 pr-4 h-14 text-base border-slate-300 dark:border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-2xl shadow-lg bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm text-slate-900 dark:text-slate-100"
-                  />
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                </div>
               </div>
             )}
 
-            {/* Right Actions: History + Clear + Settings */}
+            {/* Right Actions: Advanced Search + History + Settings */}
             <div className="flex items-center gap-4">
-              {currentPage === 'history' && history.length > 0 && (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    variant="outline"
-                    onClick={clearHistory}
-                    className="h-14 px-6 border-slate-300 dark:border-slate-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl font-semibold bg-white/70 dark:bg-slate-700/70 backdrop-blur-sm shadow-lg text-red-600 hover:text-red-700"
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Clear All
-                  </Button>
-                </motion.div>
-              )}
-
-              {currentPage === 'analyzer' && (
-                <>
+              <>
                   {/* Advanced Search Icon with Hover Expansion */}
                   <Link href="/search">
                     <motion.div 
@@ -345,35 +273,36 @@ export default function HomePage() {
                   </Link>
                   
                   {/* History Icon with Hover Expansion */}
-                  <motion.div 
-                    className="relative group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.div
-                      onClick={handlePageSwap}
-                      className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
-                      whileHover="hover"
-                      initial="initial"
-                      variants={{
-                        initial: { width: "2.5rem" },
-                        hover: { width: "auto" }
-                      }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
+                  <Link href="/history">
+                    <motion.div 
+                      className="relative group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Clock className="w-5 h-5 flex-shrink-0" />
-                      <motion.span
-                        className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                      <motion.div
+                        className="flex items-center justify-center w-10 h-10 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer transition-colors duration-200"
+                        whileHover="hover"
+                        initial="initial"
                         variants={{
-                          initial: { opacity: 0, width: 0 },
-                          hover: { opacity: 1, width: "auto" }
+                          initial: { width: "2.5rem" },
+                          hover: { width: "auto" }
                         }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                       >
-                        {t.history} ({history.length})
-                      </motion.span>
+                        <Clock className="w-5 h-5 flex-shrink-0" />
+                        <motion.span
+                          className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
+                          variants={{
+                            initial: { opacity: 0, width: 0 },
+                            hover: { opacity: 1, width: "auto" }
+                          }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          {t.history} ({history.length})
+                        </motion.span>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
+                  </Link>
                 </>
               )}
 
@@ -435,8 +364,7 @@ export default function HomePage() {
           transition={{ duration: 0.3 }}
           className="max-w-7xl mx-auto p-6"
         >
-          {currentPage === 'analyzer' ? (
-            // Analyzer Content
+          {/* Analyzer Content */}
             <div className="grid grid-cols-12 gap-8 min-h-[calc(100vh-200px)]">
               {/* Preview Pane */}
               <motion.div
@@ -562,98 +490,6 @@ export default function HomePage() {
                 </AnimatePresence>
               </motion.div>
             </div>
-          ) : (
-            // History Content
-            <div className="min-h-[calc(100vh-200px)]">
-              {filteredHistory.length === 0 ? (
-                <div className="text-center py-16">
-                  <Clock className="w-16 h-16 text-gray-300 dark:text-slate-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-700 dark:text-slate-200 mb-2">
-                    {searchTerm ? "No matching results" : "No analysis history"}
-                  </h3>
-                  <p className="text-gray-500 dark:text-slate-400 mb-6">
-                    {searchTerm ? "Try adjusting your search terms" : "Start analyzing websites to see your history here"}
-                  </p>
-                  <Button onClick={handlePageSwap} className="bg-emerald-600 hover:bg-emerald-700">
-                    Start Analyzing
-                  </Button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredHistory.map((item, index) => (
-                    <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
-                      <div className="aspect-video bg-gray-100 dark:bg-slate-700 relative">
-                        <img
-                          src={item.screenshot || "/placeholder.svg"}
-                          alt={`Screenshot of ${item.title}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.src = "/placeholder.svg"
-                          }}
-                        />
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => deleteItem(index)}
-                          className="absolute top-2 right-2 bg-white/80 dark:bg-slate-700/80 hover:bg-white dark:hover:bg-slate-600 text-red-600 hover:text-red-700"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-
-                      <div className="p-4">
-                        <div className="flex items-start gap-3 mb-3">
-                          <img
-                            src={item.favicon || "/placeholder.svg"}
-                            alt="Favicon"
-                            className="w-5 h-5 mt-0.5 flex-shrink-0"
-                            onError={(e) => {
-                              e.currentTarget.src = "/placeholder.svg"
-                            }}
-                          />
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-semibold text-gray-900 dark:text-slate-100 truncate mb-1">{item.title}</h3>
-                            <p className="text-sm text-gray-500 dark:text-slate-400 truncate">{item.url}</p>
-                          </div>
-                        </div>
-
-                        <p className="text-sm text-gray-600 dark:text-slate-300 mb-3 line-clamp-2">{item.description}</p>
-
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          {item.keywords.slice(0, 3).map((keyword, i) => (
-                            <Badge key={i} variant="secondary" className="text-xs">
-                              {keyword}
-                            </Badge>
-                          ))}
-                          {item.keywords.length > 3 && (
-                            <Badge variant="outline" className="text-xs">
-                              {"+"}{item.keywords.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-gray-500 dark:text-slate-400">{formatDate(item.timestamp)}</span>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => {
-                              setUrl(item.url)
-                              handlePageSwap()
-                              setTimeout(() => handlePreview(item.url), 300)
-                            }}
-                            className="border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700"
-                          >
-                            Re-analyze
-                          </Button>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
         </motion.main>
       </AnimatePresence>
       </div>

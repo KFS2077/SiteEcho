@@ -96,13 +96,15 @@ export default function HistoryPage() {
                   {t?.back || "Back"}
                 </Button>
               </Link>
-              <div className="flex items-center gap-3">
-                <Clock className="w-6 h-6 text-emerald-600" />
-                <div>
-                  <h1 className="text-2xl font-black text-gray-900 dark:text-slate-100 font-serif">{t.analysisHistory}</h1>
-                  <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">{history.length} {t.websitesAnalyzed}</p>
+              <Link href="/" className="block">
+                <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                  <Clock className="w-6 h-6 text-emerald-600" />
+                  <div>
+                    <h1 className="text-2xl font-black text-gray-900 dark:text-slate-100 font-serif">{t.analysisHistory}</h1>
+                    <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">{history.length} {t.websitesAnalyzed}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
 
             <div className="flex items-center gap-4">
