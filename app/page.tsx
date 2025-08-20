@@ -10,7 +10,7 @@ import { PreviewPane } from "@/components/preview-pane"
 import { KeywordsSubpage } from "@/components/subpages/keywords-subpage"
 import { SearchEngineSubpage } from "@/components/subpages/search-engine-subpage"
 import { SimilarSitesSubpage } from "@/components/subpages/similar-sites-subpage"
-import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search, Filter } from "lucide-react"
+import { Globe, BarChart3, Clock, Sparkles, ChevronLeft, ChevronRight, Settings, Monitor, Sun, Moon, Trash2, Search, Filter, Gem } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
@@ -329,7 +329,42 @@ export default function HomePage() {
                         }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                       >
-                        <Filter className="w-5 h-5 flex-shrink-0" />
+                        <motion.div
+                          className="relative"
+                          animate={{
+                            rotate: [0, 5, -5, 0],
+                            scale: [1, 1.1, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <Gem className="w-5 h-5 flex-shrink-0 drop-shadow-lg" style={{
+                            filter: 'drop-shadow(0 0 8px rgba(147, 51, 234, 0.6)) drop-shadow(0 0 16px rgba(236, 72, 153, 0.4)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.3))',
+                            background: 'linear-gradient(45deg, #9333ea, #ec4899, #3b82f6)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
+                          }} />
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            animate={{
+                              boxShadow: [
+                                '0 0 20px rgba(147, 51, 234, 0.3)',
+                                '0 0 30px rgba(236, 72, 153, 0.4)',
+                                '0 0 40px rgba(59, 130, 246, 0.3)',
+                                '0 0 20px rgba(147, 51, 234, 0.3)'
+                              ]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                          />
+                        </motion.div>
                         <motion.span
                           className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
                           variants={{

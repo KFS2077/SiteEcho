@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code, Brain } from "lucide-react"
+import { ArrowLeft, Search, Settings, Monitor, Sun, Moon, Code, Brain, MousePointer } from "lucide-react"
 import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
@@ -415,6 +415,41 @@ export default function SearchPage() {
                     <div className="relative w-6 h-6 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center">
                       <Code className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                     </div>
+                    
+                    {/* Mouse Click Animation */}
+                    <motion.div
+                      className="absolute -top-2 -right-2 pointer-events-none"
+                      animate={{
+                        scale: [0, 1, 1, 0],
+                        opacity: [0, 1, 1, 0],
+                        x: [0, 2, 2, 0],
+                        y: [0, -2, -2, 0]
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        times: [0, 0.3, 0.7, 1]
+                      }}
+                    >
+                      <div className="relative">
+                        <MousePointer className="w-4 h-4 text-purple-600 dark:text-purple-400 drop-shadow-lg" />
+                        {/* Click ripple effect */}
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-purple-400"
+                          animate={{
+                            scale: [1, 2.5],
+                            opacity: [0.8, 0]
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            repeat: Infinity,
+                            repeatDelay: 1.9,
+                            ease: "easeOut"
+                          }}
+                        />
+                      </div>
+                    </motion.div>
                   </motion.button>
                 </div>
 

@@ -20,22 +20,22 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "SiteEcho",
-  description: "SiteEcho is a powerful web analysis platform offering comprehensive keyword insights, site search capabilities, competitor discovery, and SEO optimization tools for modern websites.",
+  title: "URLinsights",
+  description: "URLinsights is a powerful web analysis platform offering comprehensive keyword insights, site search capabilities, competitor discovery, and SEO optimization tools for modern websites.",
   keywords: ["web analysis", "SEO tools", "keyword research", "competitor analysis", "site search", "website insights", "digital marketing"],
   authors: [{ name: "SiteEcho Team" }],
-  creator: "SiteEcho",
-  publisher: "SiteEcho",
+  creator: "URLinsights",
+  publisher: "URLinsights",
   robots: "index, follow",
   openGraph: {
-    title: "SiteEcho",
+    title: "URLinsights",
     description: "Powerful web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteEcho",
+    title: "URLinsights",
     description: "Powerful web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
   },
   viewport: "width=device-width, initial-scale=1",
@@ -53,10 +53,10 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "SiteEcho",
-    "description": "Advanced web analysis platform for keyword insights, competitor discovery, and SEO optimization.",
+    "name": "URLinsights",
+    "description": "URLinsights is a powerful web analysis platform offering comprehensive keyword insights, site search capabilities, competitor discovery, and SEO optimization tools for modern websites.",
     "url": "https://site-echo-ide.vercel.app/",
-    "applicationCategory": "BusinessApplication",
+    "applicationCategory": "ServiceApplication",
     "operatingSystem": "Web Browser",
     "offers": {
       "@type": "Offer",
