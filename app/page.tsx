@@ -16,7 +16,8 @@ import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { FancyPageTransition } from "@/components/page-transition"
+import { PageTransition } from "@/components/page-transition"
+import { Footer } from "@/components/footer"
 
 interface PreviewData {
   url: string
@@ -219,7 +220,7 @@ export default function HomePage() {
   const t = translations[language]
 
   return (
-    <FancyPageTransition>
+    <PageTransition>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header Bar */}
       <motion.header
@@ -689,6 +690,7 @@ export default function HomePage() {
         </motion.main>
       </AnimatePresence>
       </div>
-    </FancyPageTransition>
+      <Footer />
+    </PageTransition>
   )
 }

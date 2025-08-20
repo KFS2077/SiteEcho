@@ -20,6 +20,9 @@ export function Footer() {
             <p className="flex items-center gap-3 justify-center">
               © {currentYear} URLinsights. Made with <Heart className="w-4 h-4 text-red-400 fill-current" /> for better insights.
             </p>
+            <p className="mt-1 text-xs text-slate-400">
+              URLinsights doesn't example example example example.
+            </p>
           </div>
           
           <div className="text-xs text-slate-400">
