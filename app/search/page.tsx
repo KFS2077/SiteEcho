@@ -418,41 +418,18 @@ export default function SearchPage() {
                     />
                     <div className="relative w-6 h-6 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow">
                       <Code className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                      {/* subtle ping */}
-                      <span className="absolute -right-1 -top-1 inline-flex h-2 w-2 rounded-full bg-purple-500">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                      </span>
                     </div>
 
-                    {/* Mouse Click Guidance */}
+                    {/* Simple click hint */}
                     <motion.div
-                      className="absolute -top-3 -right-3 pointer-events-none"
+                      className="absolute -top-2 -right-2 pointer-events-none"
                       animate={{
-                        x: [0, 2, 2, 0],
-                        y: [0, -2, -2, 0],
-                        opacity: [0.2, 1, 1, 0.2],
-                        rotate: [0, -10, -10, 0]
+                        scale: [1, 1.1, 1],
+                        opacity: [0.6, 1, 0.6]
                       }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      <div className="relative">
-                        {/* cursor */}
-                        <MousePointer className="w-4 h-4 text-purple-600 dark:text-purple-400 drop-shadow-lg" />
-                        {/* click ripple */}
-                        <motion.div
-                          className="absolute -right-2 -bottom-1 h-2 w-2 rounded-full border-2 border-purple-400"
-                          animate={{ scale: [1, 2.5], opacity: [0.8, 0] }}
-                          transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 2.2, ease: "easeOut" }}
-                        />
-                        {/* tooltip */}
-                        <motion.div
-                          className="absolute -left-2 -top-7 px-2 py-1 rounded-md bg-slate-900 text-white text-[10px] shadow-lg"
-                          animate={{ opacity: [0, 1, 1, 0], y: [2, 0, 0, 2] }}
-                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                          Click for syntax
-                        </motion.div>
-                      </div>
+                      <MousePointer className="w-3 h-3 text-purple-500 dark:text-purple-400" />
                     </motion.div>
                   </motion.button>
                 </div>

@@ -312,7 +312,7 @@ export default function HomePage() {
 
               {currentPage === 'analyzer' && (
                 <>
-                  {/* Advanced Search Icon with Spectacular Gem Effects */}
+                  {/* Advanced Search Icon - Clean Gem */}
                   <Link href="/search">
                     <motion.div 
                       className="relative group"
@@ -332,145 +332,34 @@ export default function HomePage() {
                         <motion.div
                           className="relative"
                           animate={{
-                            rotate: [0, 10, -10, 5, -5, 0],
-                            scale: [1, 1.15, 0.95, 1.1, 1],
-                            y: [0, -2, 1, -1, 0]
+                            rotate: [0, 2, -2, 0],
+                            scale: [1, 1.05, 1]
                           }}
                           transition={{
-                            duration: 4,
+                            duration: 3,
                             repeat: Infinity,
                             ease: "easeInOut"
                           }}
                         >
-                          {/* Multiple glowing aura layers */}
+                          {/* Simple subtle glow */}
                           <motion.div
-                            className="absolute inset-0 w-8 h-8 -translate-x-1.5 -translate-y-1.5"
-                            animate={{
-                              background: [
-                                'radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, rgba(147, 51, 234, 0.1) 50%, transparent 100%)',
-                                'radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 100%)',
-                                'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%)',
-                                'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(16, 185, 129, 0.1) 50%, transparent 100%)',
-                                'radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, rgba(147, 51, 234, 0.1) 50%, transparent 100%)'
-                              ],
-                              scale: [1, 1.3, 1.1, 1.2, 1],
-                              opacity: [0.6, 0.9, 0.7, 0.8, 0.6]
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          />
-                          
-                          {/* Sparkle particles */}
-                          <motion.div
-                            className="absolute -inset-2"
-                            animate={{
-                              rotate: 360
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              ease: "linear"
-                            }}
-                          >
-                            {[...Array(6)].map((_, i) => (
-                              <motion.div
-                                key={i}
-                                className="absolute w-1 h-1 bg-white rounded-full"
-                                style={{
-                                  top: `${20 + Math.sin(i * Math.PI / 3) * 15}px`,
-                                  left: `${20 + Math.cos(i * Math.PI / 3) * 15}px`,
-                                }}
-                                animate={{
-                                  scale: [0, 1, 0],
-                                  opacity: [0, 1, 0],
-                                  backgroundColor: [
-                                    '#9333ea',
-                                    '#ec4899', 
-                                    '#3b82f6',
-                                    '#10b981',
-                                    '#f59e0b'
-                                  ]
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  delay: i * 0.3,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            ))}
-                          </motion.div>
-                          
-                          {/* Main gem icon with enhanced styling */}
-                          <motion.div
-                            animate={{
-                              background: [
-                                'linear-gradient(45deg, #9333ea, #ec4899, #3b82f6)',
-                                'linear-gradient(90deg, #ec4899, #3b82f6, #10b981)',
-                                'linear-gradient(135deg, #3b82f6, #10b981, #f59e0b)',
-                                'linear-gradient(180deg, #10b981, #f59e0b, #9333ea)',
-                                'linear-gradient(45deg, #9333ea, #ec4899, #3b82f6)'
-                              ]
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "linear"
-                            }}
-                            className="relative rounded-lg p-0.5"
-                          >
-                            <Gem 
-                              className="w-5 h-5 flex-shrink-0 relative z-10" 
-                              style={{
-                                filter: 'drop-shadow(0 0 12px rgba(147, 51, 234, 0.8)) drop-shadow(0 0 20px rgba(236, 72, 153, 0.6)) drop-shadow(0 0 28px rgba(59, 130, 246, 0.4))',
-                                background: 'linear-gradient(45deg, #9333ea, #ec4899, #3b82f6, #10b981)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                              }} 
-                            />
-                          </motion.div>
-                          
-                          {/* Pulsing halo effect */}
-                          <motion.div
-                            className="absolute inset-0 rounded-full"
+                            className="absolute inset-0 w-6 h-6 -translate-x-0.5 -translate-y-0.5 rounded-full"
                             animate={{
                               boxShadow: [
-                                '0 0 15px rgba(147, 51, 234, 0.3), 0 0 30px rgba(147, 51, 234, 0.2), 0 0 45px rgba(147, 51, 234, 0.1)',
-                                '0 0 20px rgba(236, 72, 153, 0.4), 0 0 35px rgba(236, 72, 153, 0.3), 0 0 50px rgba(236, 72, 153, 0.2)',
-                                '0 0 25px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.3), 0 0 55px rgba(59, 130, 246, 0.2)',
-                                '0 0 20px rgba(16, 185, 129, 0.4), 0 0 35px rgba(16, 185, 129, 0.3), 0 0 50px rgba(16, 185, 129, 0.2)',
-                                '0 0 15px rgba(147, 51, 234, 0.3), 0 0 30px rgba(147, 51, 234, 0.2), 0 0 45px rgba(147, 51, 234, 0.1)'
-                              ]
+                                '0 0 8px rgba(16, 185, 129, 0.3)',
+                                '0 0 12px rgba(16, 185, 129, 0.4)',
+                                '0 0 8px rgba(16, 185, 129, 0.3)'
+                              ],
+                              opacity: [0.7, 1, 0.7]
                             }}
                             transition={{
-                              duration: 3.5,
+                              duration: 2,
                               repeat: Infinity,
                               ease: "easeInOut"
                             }}
-                          />
                           
-                          {/* Shine sweep effect */}
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
-                            animate={{
-                              x: [-20, 20],
-                              opacity: [0, 0.6, 0]
-                            }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              repeatDelay: 1,
-                              ease: "easeInOut"
-                            }}
-                            style={{
-                              clipPath: 'polygon(20% 0%, 60% 0%, 80% 100%, 40% 100%)',
-                              transform: 'skewX(-20deg)'
-                            }}
-                          />
+                          {/* Clean gem icon */}
+                          <Gem className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                         </motion.div>
                         <motion.span
                           className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"
