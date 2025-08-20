@@ -332,26 +332,45 @@ export default function HomePage() {
                         <motion.div
                           className="relative"
                           animate={{
-                            rotate: [0, 2, -2, 0],
-                            scale: [1, 1.05, 1]
+                            rotate: [0, 3, -3, 0],
+                            scale: [1, 1.08, 1]
                           }}
                           transition={{
-                            duration: 3,
+                            duration: 2.5,
                             repeat: Infinity,
                             ease: "easeInOut"
                           }}
                         >
-                          {/* Colorful animated glow */}
+                          {/* Multi-layered colorful animated glow */}
+                          <motion.div
+                            className="absolute inset-0 w-7 h-7 -translate-x-1 -translate-y-1 rounded-full blur-sm"
+                            animate={{
+                              boxShadow: [
+                                '0 0 20px rgba(236, 72, 153, 0.8), 0 0 35px rgba(59, 130, 246, 0.6), 0 0 50px rgba(16, 185, 129, 0.5), 0 0 65px rgba(245, 158, 11, 0.4)',
+                                '0 0 25px rgba(139, 92, 246, 0.9), 0 0 40px rgba(236, 72, 153, 0.7), 0 0 55px rgba(34, 211, 238, 0.6), 0 0 70px rgba(16, 185, 129, 0.5)',
+                                '0 0 22px rgba(34, 211, 238, 0.8), 0 0 38px rgba(245, 158, 11, 0.7), 0 0 52px rgba(139, 92, 246, 0.6), 0 0 68px rgba(236, 72, 153, 0.5)',
+                                '0 0 18px rgba(16, 185, 129, 0.9), 0 0 32px rgba(34, 211, 238, 0.7), 0 0 48px rgba(59, 130, 246, 0.6), 0 0 62px rgba(139, 92, 246, 0.5)',
+                                '0 0 24px rgba(245, 158, 11, 0.8), 0 0 36px rgba(16, 185, 129, 0.7), 0 0 50px rgba(236, 72, 153, 0.6), 0 0 65px rgba(34, 211, 238, 0.5)'
+                              ],
+                              opacity: [0.9, 1, 0.95, 1, 0.85]
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                          />
+                          {/* Inner intense glow */}
                           <motion.div
                             className="absolute inset-0 w-6 h-6 -translate-x-0.5 -translate-y-0.5 rounded-full"
                             animate={{
                               boxShadow: [
-                                '0 0 15px rgba(16, 185, 129, 0.6), 0 0 25px rgba(139, 92, 246, 0.4), 0 0 35px rgba(34, 211, 238, 0.3)',
-                                '0 0 20px rgba(139, 92, 246, 0.7), 0 0 30px rgba(34, 211, 238, 0.5), 0 0 40px rgba(16, 185, 129, 0.4)',
-                                '0 0 18px rgba(34, 211, 238, 0.6), 0 0 28px rgba(16, 185, 129, 0.5), 0 0 38px rgba(139, 92, 246, 0.4)',
-                                '0 0 15px rgba(16, 185, 129, 0.6), 0 0 25px rgba(139, 92, 246, 0.4), 0 0 35px rgba(34, 211, 238, 0.3)'
+                                '0 0 12px rgba(255, 255, 255, 0.9), 0 0 18px rgba(236, 72, 153, 0.8), 0 0 24px rgba(139, 92, 246, 0.6)',
+                                '0 0 15px rgba(255, 255, 255, 0.95), 0 0 22px rgba(34, 211, 238, 0.8), 0 0 28px rgba(16, 185, 129, 0.7)',
+                                '0 0 13px rgba(255, 255, 255, 0.9), 0 0 20px rgba(245, 158, 11, 0.8), 0 0 26px rgba(236, 72, 153, 0.6)',
+                                '0 0 16px rgba(255, 255, 255, 1), 0 0 24px rgba(139, 92, 246, 0.9), 0 0 30px rgba(34, 211, 238, 0.7)'
                               ],
-                              opacity: [0.8, 1, 0.9, 0.8]
+                              scale: [1, 1.1, 1.05, 1.15, 1]
                             }}
                             transition={{
                               duration: 3,
@@ -359,8 +378,50 @@ export default function HomePage() {
                               ease: "easeInOut"
                             }}
                           />
-                          {/* Clean gem icon */}
-                          <Gem className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                          {/* Sparkle effects */}
+                          <motion.div
+                            className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full"
+                            animate={{
+                              opacity: [0, 1, 0],
+                              scale: [0.5, 1.2, 0.5]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: 0.5
+                            }}
+                          />
+                          <motion.div
+                            className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-cyan-300 rounded-full"
+                            animate={{
+                              opacity: [0, 1, 0],
+                              scale: [0.3, 1, 0.3]
+                            }}
+                            transition={{
+                              duration: 2.5,
+                              repeat: Infinity,
+                              delay: 1
+                            }}
+                          />
+                          {/* Enhanced gem icon with gradient */}
+                          <motion.div
+                            animate={{
+                              filter: [
+                                'hue-rotate(0deg) saturate(1.2) brightness(1.1)',
+                                'hue-rotate(60deg) saturate(1.4) brightness(1.2)',
+                                'hue-rotate(120deg) saturate(1.3) brightness(1.15)',
+                                'hue-rotate(180deg) saturate(1.5) brightness(1.25)',
+                                'hue-rotate(0deg) saturate(1.2) brightness(1.1)'
+                              ]
+                            }}
+                            transition={{
+                              duration: 5,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                          >
+                            <Gem className="w-5 h-5 text-emerald-500 dark:text-emerald-300 drop-shadow-lg" />
+                          </motion.div>
                         </motion.div>
                         <motion.span
                           className="ml-2 text-sm font-medium whitespace-nowrap overflow-hidden"

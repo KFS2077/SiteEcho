@@ -21,7 +21,7 @@ export function Footer() {
               © {currentYear} URLinsights. Made with <Heart className="w-4 h-4 text-red-400 fill-current" /> for better insights.
             </p>
             <p className="mt-1 text-xs text-slate-400">
-              URLinsights doesn't example example example example.
+              URLinsights doesn't collect any data.
             </p>
           </div>
           
