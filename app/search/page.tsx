@@ -420,16 +420,17 @@ export default function SearchPage() {
                       <Code className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                     </div>
 
-                    {/* Simple click hint */}
+                    {/* Click reminder text */}
                     <motion.div
-                      className="absolute -top-2 -right-2 pointer-events-none"
+                      className="absolute -top-8 left-1/2 -translate-x-1/2 pointer-events-none"
                       animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.6, 1, 0.6]
+                        opacity: [0.7, 1, 0.7]
                       }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      <MousePointer className="w-3 h-3 text-purple-500 dark:text-purple-400" />
+                      <span className="text-xs text-purple-500 dark:text-purple-400 bg-white/80 dark:bg-slate-800/80 px-2 py-1 rounded-full shadow-sm whitespace-nowrap">
+                        Click me!
+                      </span>
                     </motion.div>
                   </motion.button>
                 </div>

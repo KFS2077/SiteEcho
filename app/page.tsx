@@ -341,19 +341,20 @@ export default function HomePage() {
                             ease: "easeInOut"
                           }}
                         >
-                          {/* Simple subtle glow */}
+                          {/* Colorful animated glow */}
                           <motion.div
                             className="absolute inset-0 w-6 h-6 -translate-x-0.5 -translate-y-0.5 rounded-full"
                             animate={{
                               boxShadow: [
-                                '0 0 8px rgba(16, 185, 129, 0.3)',
-                                '0 0 12px rgba(16, 185, 129, 0.4)',
-                                '0 0 8px rgba(16, 185, 129, 0.3)'
+                                '0 0 15px rgba(16, 185, 129, 0.6), 0 0 25px rgba(139, 92, 246, 0.4), 0 0 35px rgba(34, 211, 238, 0.3)',
+                                '0 0 20px rgba(139, 92, 246, 0.7), 0 0 30px rgba(34, 211, 238, 0.5), 0 0 40px rgba(16, 185, 129, 0.4)',
+                                '0 0 18px rgba(34, 211, 238, 0.6), 0 0 28px rgba(16, 185, 129, 0.5), 0 0 38px rgba(139, 92, 246, 0.4)',
+                                '0 0 15px rgba(16, 185, 129, 0.6), 0 0 25px rgba(139, 92, 246, 0.4), 0 0 35px rgba(34, 211, 238, 0.3)'
                               ],
-                              opacity: [0.7, 1, 0.7]
+                              opacity: [0.8, 1, 0.9, 0.8]
                             }}
                             transition={{
-                              duration: 2,
+                              duration: 3,
                               repeat: Infinity,
                               ease: "easeInOut"
                             }}
