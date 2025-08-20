@@ -392,62 +392,66 @@ export default function SearchPage() {
           >
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-3xl">
-                {/* Search Syntax Icon with Animated Ring */}
+                {/* Search Syntax Icon with Animated Ring and Mouse Hint */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
                   <motion.button
                     onClick={() => setShowSyntaxPanel(!showSyntaxPanel)}
                     className="relative w-8 h-8 flex items-center justify-center"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label="Show search syntax"
                   >
                     {/* Animated Ring */}
                     <motion.div
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'conic-gradient(from 0deg, #8b5cf6, #22d3ee, #06b6d4, #8b5cf6)'
+                      }}
                       animate={{
                         rotate: 360,
-                        scale: showSyntaxPanel ? [1, 1.2, 1] : [1, 1.1, 1]
+                        scale: showSyntaxPanel ? [1, 1.2, 1] : [1, 1.08, 1]
                       }}
                       transition={{
-                        rotate: { duration: 3, repeat: Infinity, ease: "linear" },
-                        scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                        rotate: { duration: 4, repeat: Infinity, ease: "linear" },
+                        scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" }
                       }}
                     />
-                    <div className="relative w-6 h-6 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center">
+                    <div className="relative w-6 h-6 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow">
                       <Code className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                      {/* subtle ping */}
+                      <span className="absolute -right-1 -top-1 inline-flex h-2 w-2 rounded-full bg-purple-500">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                      </span>
                     </div>
-                    
-                    {/* Mouse Click Animation */}
+
+                    {/* Mouse Click Guidance */}
                     <motion.div
-                      className="absolute -top-2 -right-2 pointer-events-none"
+                      className="absolute -top-3 -right-3 pointer-events-none"
                       animate={{
-                        scale: [0, 1, 1, 0],
-                        opacity: [0, 1, 1, 0],
                         x: [0, 2, 2, 0],
-                        y: [0, -2, -2, 0]
+                        y: [0, -2, -2, 0],
+                        opacity: [0.2, 1, 1, 0.2],
+                        rotate: [0, -10, -10, 0]
                       }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        times: [0, 0.3, 0.7, 1]
-                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     >
                       <div className="relative">
+                        {/* cursor */}
                         <MousePointer className="w-4 h-4 text-purple-600 dark:text-purple-400 drop-shadow-lg" />
-                        {/* Click ripple effect */}
+                        {/* click ripple */}
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-purple-400"
-                          animate={{
-                            scale: [1, 2.5],
-                            opacity: [0.8, 0]
-                          }}
-                          transition={{
-                            duration: 0.6,
-                            repeat: Infinity,
-                            repeatDelay: 1.9,
-                            ease: "easeOut"
-                          }}
+                          className="absolute -right-2 -bottom-1 h-2 w-2 rounded-full border-2 border-purple-400"
+                          animate={{ scale: [1, 2.5], opacity: [0.8, 0] }}
+                          transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 2.2, ease: "easeOut" }}
                         />
+                        {/* tooltip */}
+                        <motion.div
+                          className="absolute -left-2 -top-7 px-2 py-1 rounded-md bg-slate-900 text-white text-[10px] shadow-lg"
+                          animate={{ opacity: [0, 1, 1, 0], y: [2, 0, 0, 2] }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          Click for syntax
+                        </motion.div>
                       </div>
                     </motion.div>
                   </motion.button>
