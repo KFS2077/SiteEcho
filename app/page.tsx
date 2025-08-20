@@ -16,7 +16,6 @@ import Link from "next/link"
 import { translations, type Language } from "@/lib/translations"
 import { useTheme } from "next-themes"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { PageTransition } from "@/components/page-transition"
 import { Footer } from "@/components/footer"
 
 interface PreviewData {
@@ -220,7 +219,7 @@ export default function HomePage() {
   const t = translations[language]
 
   return (
-    <PageTransition>
+    <>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header Bar */}
       <motion.header
@@ -358,7 +357,7 @@ export default function HomePage() {
                               repeat: Infinity,
                               ease: "easeInOut"
                             }}
-                          
+                          />
                           {/* Clean gem icon */}
                           <Gem className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                         </motion.div>
@@ -691,6 +690,6 @@ export default function HomePage() {
       </AnimatePresence>
       </div>
       <Footer />
-    </PageTransition>
+    </>
   )
 }
