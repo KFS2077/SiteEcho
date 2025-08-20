@@ -690,7 +690,7 @@ export default function HomePage() {
         </motion.main>
       </AnimatePresence>
       </div>
-      <Footer />
+
     </>
   )
 }
